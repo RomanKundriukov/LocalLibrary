@@ -7,9 +7,12 @@
              NavigationPage.HasNavigationBar="False"
              Title="Detail">
     <VerticalStackLayout>
-
+        
+        <Label
+            Text="{Binding Title}"
+            />
         <Button 
            Text="Content 1"
-           />
+           Command="{Binding testCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

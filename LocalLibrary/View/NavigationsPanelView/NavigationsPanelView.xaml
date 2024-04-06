@@ -6,25 +6,23 @@
              xmlns:content="clr-namespace:LocalLibrary.View.ContentView"
              xmlns:model="clr-namespace:LocalLibrary.Model"
              Title="NavigationsPanelView">
-    <!--<VerticalStackLayout
-        Spacing="10"
-        Padding="10">
-        <Button 
-            Text="Button 1"
-            Clicked="Button_Clicked"/>
-        <Button 
-            Text="Button 2"
-            Command="{Binding nav2Command}"/>
-    </VerticalStackLayout>-->
-
-    <!--<CollectionView
-        x:Name="collectionView"
-        x:FieldModifier="public"
-        SelectionMode="Single">
+    <CollectionView x:Name="collectionView"
+                    x:FieldModifier="public"
+                    SelectionMode="Single">
         <CollectionView.ItemsSource>
             <x:Array Type="{x:Type model:FlyoutPageItem}">
-                <model:FlyoutPageItem Title="Contacts"
-                                      TargetType="{x:Type content:NewPage1}"/>
+                <model:FlyoutPageItem 
+                    Title="Reminders"
+                    TargetType="{x:Type content:StartContentView}" />
+                
+                <model:FlyoutPageItem 
+                    Title="Contacts"
+                    IconSource="dotnet_bot.png"
+                    TargetType="{x:Type content:NewPage1}" />
+                
+                <model:FlyoutPageItem 
+                    Title="TodoList"
+                    TargetType="{x:Type content:NewPage2}" />
             </x:Array>
         </CollectionView.ItemsSource>
         <CollectionView.ItemTemplate>
@@ -35,37 +33,6 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Image Source="{Binding IconSource}" />
-                    <Label Grid.Column="1"
-                           Margin="20,0"
-                           Text="{Binding Title}"
-                           FontSize="20"
-                           FontAttributes="Bold"
-                           VerticalOptions="Center" />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>-->
-    <CollectionView x:Name="collectionView"
-                    x:FieldModifier="public"
-                    SelectionMode="Single">
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type model:FlyoutPageItem}">
-                <model:FlyoutPageItem Title="Contacts"
-                                      TargetType="{x:Type content:NewPage1}" />
-                <model:FlyoutPageItem Title="TodoList"
-                                      TargetType="{x:Type content:NewPage2}" />
-                <model:FlyoutPageItem Title="Reminders"
-                                      TargetType="{x:Type content:StartContentView}" />
-            </x:Array>
-        </CollectionView.ItemsSource>
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid Padding="5,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <!--<Image Source="{Binding Source='LocalLibrary/Model/FlyoutPageItem'}" />-->
                     <Label Grid.Column="1"
                            Margin="20,0"
                            Text="{Binding Title}"
