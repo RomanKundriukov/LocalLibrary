@@ -10,6 +10,6 @@
 
         <Button 
            Text="Content 1"
-           Command="{Binding nav1Command}"/>
+           />
     </VerticalStackLayout>
 </ContentPage>
