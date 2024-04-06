@@ -6,13 +6,14 @@ namespace LocalLibrary.ViewModel
 {
     public partial class NavigationsPanelViewModel : ObservableObject
     {
-
-
         [RelayCommand]
         public async Task nav1()
         {
-            await Shell.Current.GoToAsync(nameof(NewPage1));
+            //await Shell.Current.GoToAsync(nameof(NewPage1));
+            await Shell.Current.GoToAsync("NewPage1");
         }
+
+
 
         [RelayCommand]
         public async Task nav2()

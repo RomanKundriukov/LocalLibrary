@@ -4,15 +4,30 @@
              x:Class="LocalLibrary.View.NavigationsPanelView.NavigationsPanelView"
              xmlns:viewmodel="clr-namespace:LocalLibrary.ViewModel"
              x:DataType="viewmodel:NavigationsPanelViewModel"
+             xmlns:navigation="clr-namespace:LocalLibrary.View.NavigationsPanelView"
+             xmlns:content="clr-namespace:LocalLibrary.View.ContentView"
+             xmlns:model="clr-namespace:LocalLibrary.Model"
              Title="NavigationsPanelView">
-    <VerticalStackLayout
+    <!--<VerticalStackLayout
         Spacing="10"
         Padding="10">
         <Button 
             Text="Button 1"
-            Command="{Binding nav1Command}"/>
+            Clicked="Button_Clicked"/>
         <Button 
             Text="Button 2"
             Command="{Binding nav2Command}"/>
-    </VerticalStackLayout>
+    </VerticalStackLayout>-->
+
+    <CollectionView
+        x:Name="collectionView"
+        x:FieldModifier="public"
+        SelectionMode="Single">
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type model:FlyoutPageItem}">
+                <model:FlyoutPageItem Title="Contacts"
+                                      TargetType="{x:Type content:NewPage1}"/>
+            </x:Array>
+        </CollectionView.ItemsSource>
+    </CollectionView>
 </ContentPage>

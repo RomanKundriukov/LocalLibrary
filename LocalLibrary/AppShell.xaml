@@ -4,6 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:LocalLibrary"
+    xmlns:nav="clr-namespace:LocalLibrary.View.NavigationsPanelView"
+    xmlns:con="clr-namespace:LocalLibrary.View.ContentView"
     xmlns:view="clr-namespace:LocalLibrary.View"
     Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="False"
@@ -13,5 +15,17 @@
         Title="Home"
         ContentTemplate="{DataTemplate view:HauptSeiteView}"
         Route="HauptSeiteView" />
+    <!--<FlyoutItem Title="Navigation" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent ContentTemplate="{DataTemplate nav:NavigationsPanelView}" />
+    </FlyoutItem>
+
+    <TabBar>
+        <Tab Title="Page 1">
+            <ShellContent ContentTemplate="{DataTemplate con:NewPage1}" />
+        </Tab>
+        <Tab Title="Page 2">
+            <ShellContent ContentTemplate="{DataTemplate con:NewPage2}" />
+        </Tab>
+    </TabBar>-->
 
 </Shell>

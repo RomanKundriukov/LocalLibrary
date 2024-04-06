@@ -4,13 +4,10 @@
             x:Class="LocalLibrary.View.HauptSeiteView"
             xmlns:content="clr-namespace:LocalLibrary.View.ContentView"
             xmlns:navigtionsPanel="clr-namespace:LocalLibrary.View.NavigationsPanelView"
-            xmlns:pages="clr-namespace:LocalLibrary.View"
             FlyoutLayoutBehavior="Default">
 
     <FlyoutPage.Flyout>
-        <!--<navigation:NavPanelView />-->
-        <!--<pages:NavPanelView />-->
-        <navigtionsPanel:NavigationsPanelView />
+        <navigtionsPanel:NavigationsPanelView x:Name="flyoutPage"/>
     </FlyoutPage.Flyout>
 
     <FlyoutPage.Detail>
