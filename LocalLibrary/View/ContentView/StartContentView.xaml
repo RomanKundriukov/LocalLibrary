@@ -14,5 +14,9 @@
         <Button 
            Text="Content 1"
            Command="{Binding testCommand}"/>
+
+        <Button 
+            Text="nav"
+            Clicked="ObjectClicked"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -11,6 +11,9 @@
     <MauiXaml Update="View\ContentView\StartContentView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="View\ContentView\Test.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="View\HauptSeiteView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

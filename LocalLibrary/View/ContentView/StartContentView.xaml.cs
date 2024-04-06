@@ -1,4 +1,4 @@
-using LocalLibrary.ViewModel;
+﻿using LocalLibrary.ViewModel;
 
 namespace LocalLibrary.View.ContentView;
 
@@ -9,9 +9,8 @@ public partial class StartContentView : ContentPage
         InitializeComponent();
         BindingContext = new StartContentViewModel();
     }
-    //public StartContentView(StartContentViewModel vm) : this()
-    //{
-    //    InitializeComponent();
-    //    BindingContext = vm;
-    //}
+    private async void ObjectClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Test()); // OtherPage - страница, на которую нужно перейти
+    }
 }
