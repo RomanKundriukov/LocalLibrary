@@ -25,6 +25,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-preview.2.24128.5" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="25.1.38" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -34,13 +35,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\ContentView\NewPage1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\ContentView\NewPage2.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\ContentView\StartContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\HauptSeiteView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\NavPanelView\NavPanelView.xaml">
+	  <MauiXaml Update="View\NavigationsPanelView\NavigationsPanelView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

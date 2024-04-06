@@ -1,9 +1,9 @@
 namespace LocalLibrary.View;
 
-public partial class HauptSeiteView : ContentPage
+public partial class HauptSeiteView : FlyoutPage
 {
-	public HauptSeiteView()
-	{
-		InitializeComponent();
-	}
+    public HauptSeiteView()
+    {
+        InitializeComponent();
+    }
 }

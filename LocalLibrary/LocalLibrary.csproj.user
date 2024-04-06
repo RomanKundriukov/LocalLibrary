@@ -2,13 +2,19 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <MauiXaml Update="View\ContentView\NewPage1.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="View\ContentView\NewPage2.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="View\ContentView\StartContentView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="View\HauptSeiteView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="View\NavPanelView\NavPanelView.xaml">
+    <MauiXaml Update="View\NavigationsPanelView\NavigationsPanelView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
   </ItemGroup>
@@ -17,9 +23,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Update="AppShell.xaml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Update="MainPage.xaml">
       <SubType>Designer</SubType>
     </None>
     <None Update="Resources\Styles\Colors.xaml">

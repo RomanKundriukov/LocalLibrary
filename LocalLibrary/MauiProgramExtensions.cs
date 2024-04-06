@@ -1,6 +1,6 @@
 ﻿using LocalLibrary.View;
 using LocalLibrary.View.ContentView;
-using LocalLibrary.View.NavPanelView;
+using LocalLibrary.View.NavigationsPanelView;
 using LocalLibrary.ViewModel;
 using Microsoft.Extensions.Logging;
 
@@ -20,11 +20,14 @@ namespace LocalLibrary
             builder.Services.AddTransient<HauptSeiteView>();
             builder.Services.AddTransient<HauptSeiteViewModel>();
 
-            builder.Services.AddSingleton<NavPanelView>();
-            builder.Services.AddSingleton<NavPanelViewModel>();
+            builder.Services.AddSingleton<NavigationsPanelView>();
+            builder.Services.AddSingleton<NavigationsPanelViewModel>();
 
             builder.Services.AddSingleton<StartContentView>();
-            builder.Services.AddSingleton<StartContentViewmModel>();
+            builder.Services.AddSingleton<StartContentViewModel>();
+
+            builder.Services.AddSingleton<NewPage1>();
+            builder.Services.AddSingleton<NewPage2>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
