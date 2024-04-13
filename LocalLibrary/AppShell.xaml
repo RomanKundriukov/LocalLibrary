@@ -14,7 +14,7 @@
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate view:HauptSeiteView}"
-        Route="HauptSeiteView" />
+        Route="MainPage" />
     <!--<FlyoutItem Title="Navigation" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent ContentTemplate="{DataTemplate nav:NavigationsPanelView}" />
     </FlyoutItem>
