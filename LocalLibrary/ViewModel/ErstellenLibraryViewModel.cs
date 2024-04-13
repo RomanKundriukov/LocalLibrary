@@ -23,8 +23,19 @@ namespace LocalLibrary.ViewModel
         {
             //create library
 
-            string disk = auswehlteElement.ToString();
-            string name = allgemeinName;
+            string driveLetter = auswehlteElement.ToString();
+            string folderName = allgemeinName;
+
+            string fullLibraryPath = Path.Combine(driveLetter, folderName);
+
+            try
+            {
+                Directory.CreateDirectory(fullLibraryPath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при создании папки: {ex.Message}");
+            }
         }
 
         //Bekommen die Buchstaben von alles Disk
