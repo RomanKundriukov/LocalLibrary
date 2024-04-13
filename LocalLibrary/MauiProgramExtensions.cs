@@ -21,15 +21,18 @@ namespace LocalLibrary
             builder.Services.AddTransient<HauptSeiteView>();
             builder.Services.AddTransient<HauptSeiteViewModel>();
 
+            builder.Services.AddTransient<ErstellenLibraryView>();
+            builder.Services.AddTransient<ErstellenLibraryViewModel>();
+
+            builder.Services.AddTransient<AufmachenLibraryView>();
+            builder.Services.AddTransient<AufmachenLibraryViewModel>();
+
             //Singleton один раз генерится и действует во время всей жизни приложения
             builder.Services.AddSingleton<NavigationsPanelView>();
             builder.Services.AddSingleton<NavigationsPanelViewModel>();
 
             builder.Services.AddSingleton<StartContentView>();
             builder.Services.AddSingleton<StartContentViewModel>();
-
-            builder.Services.AddSingleton<NewPage1>();
-            builder.Services.AddSingleton<NewPage2>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

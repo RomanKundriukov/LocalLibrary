@@ -11,6 +11,6 @@ public partial class StartContentView : ContentPage
     }
     private async void ObjectClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Test()); // OtherPage - страница, на которую нужно перейти
+        //await Navigation.PushAsync(new Test()); // OtherPage - страница, на которую нужно перейти
     }
 }

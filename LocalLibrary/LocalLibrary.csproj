@@ -21,15 +21,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\contact.jpg" />
+	  <None Remove="Resources\Images\aufmachen.svg" />
+	  <None Remove="Resources\Images\background_content.svg" />
+	  <None Remove="Resources\Images\background_navigations_panel.svg" />
+	  <None Remove="Resources\Images\erstellen.svg" />
+	  <None Remove="Resources\Images\home.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-preview.2.24128.5" />
-		<PackageReference Include="Syncfusion.Maui.Expander" Version="25.1.38" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="25.1.39" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -38,16 +42,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\ContentView\NewPage1.xaml">
+	  <MauiXaml Update="View\ContentView\AufmachenLibraryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\ContentView\NewPage2.xaml">
+	  <MauiXaml Update="View\ContentView\ErstellenLibraryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\ContentView\StartContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="View\ContentView\Test.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\HauptSeiteView.xaml">

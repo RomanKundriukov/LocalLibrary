@@ -5,18 +5,22 @@
              xmlns:viewmodel="clr-namespace:LocalLibrary.ViewModel"
              x:DataType="viewmodel:StartContentViewModel"
              NavigationPage.HasNavigationBar="False"
-             Title="Detail">
-    <VerticalStackLayout>
+             Title="Detail"
+             BackgroundImageSource="background_content.png">
+    <VerticalStackLayout
+        VerticalOptions="Center">
         
         <Label
-            Text="{Binding Title}"
-            />
-        <Button 
+            Text="Добро пожаловать в домашнюю библиотеку"
+            FontSize="64"
+            VerticalOptions="CenterAndExpand"
+            HorizontalOptions="CenterAndExpand"/>
+        <!--<Button 
            Text="Content 1"
            Command="{Binding testCommand}"/>
 
         <Button 
             Text="nav"
-            Clicked="ObjectClicked"/>
+            Clicked="ObjectClicked"/>-->
     </VerticalStackLayout>
 </ContentPage>

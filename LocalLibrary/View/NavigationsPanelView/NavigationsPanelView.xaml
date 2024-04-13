@@ -5,24 +5,36 @@
              xmlns:navigation="clr-namespace:LocalLibrary.View.NavigationsPanelView"
              xmlns:content="clr-namespace:LocalLibrary.View.ContentView"
              xmlns:model="clr-namespace:LocalLibrary.Model"
-             Title="NavigationsPanelView">
+             Title="NavigationsPanelView"
+             BackgroundImageSource="background_navigations_panel.png">
     <CollectionView x:Name="collectionView"
                     x:FieldModifier="public"
                     SelectionMode="Single">
         <CollectionView.ItemsSource>
             <x:Array Type="{x:Type model:FlyoutPageItem}">
                 <model:FlyoutPageItem 
-                    Title="Reminders"
-                    TargetType="{x:Type content:StartContentView}" />
+                    Title="Домашняя страница"
+                    IconSource="home.png"
+                    TargetType="{x:Type content:StartContentView}"/>
+
+                <model:FlyoutPageItem 
+                    Title="Создать"
+                    IconSource="erstellen.png"
+                    TargetType="{x:Type content:ErstellenLibraryView}"/>
                 
                 <model:FlyoutPageItem 
+                    Title="Открыть"
+                    IconSource="aufmachen.png"
+                    TargetType="{x:Type content:AufmachenLibraryView}"/>
+
+                <!--<model:FlyoutPageItem 
                     Title="Contacts"
                     IconSource="dotnet_bot.png"
                     TargetType="{x:Type content:NewPage1}" />
                 
                 <model:FlyoutPageItem 
                     Title="TodoList"
-                    TargetType="{x:Type content:NewPage2}" />
+                    TargetType="{x:Type content:NewPage2}" />-->
             </x:Array>
         </CollectionView.ItemsSource>
         <CollectionView.ItemTemplate>
@@ -32,13 +44,16 @@
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image Source="{Binding IconSource}" />
-                    <Label Grid.Column="1"
-                           Margin="20,0"
-                           Text="{Binding Title}"
-                           FontSize="20"
-                           FontAttributes="Bold"
-                           VerticalOptions="Center" />
+                    <Image 
+                        Source="{Binding IconSource}" />
+                    <Label 
+                        Grid.Column="1"
+                        Margin="20,0"
+                        Text="{Binding Title}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        TextColor="White"/>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>

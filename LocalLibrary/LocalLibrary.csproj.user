@@ -2,16 +2,13 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <MauiXaml Update="View\ContentView\NewPage1.xaml">
+    <MauiXaml Update="View\ContentView\AufmachenLibraryView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="View\ContentView\NewPage2.xaml">
+    <MauiXaml Update="View\ContentView\ErstellenLibraryView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="View\ContentView\StartContentView.xaml">
-      <SubType>Designer</SubType>
-    </MauiXaml>
-    <MauiXaml Update="View\ContentView\Test.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="View\HauptSeiteView.xaml">

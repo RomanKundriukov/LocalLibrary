@@ -2,9 +2,7 @@
 
 namespace LocalLibrary.ViewModel
 {
-    public partial class NavigationsPanelViewModel : ObservableObject
+    public partial class AufmachenLibraryViewModel : ObservableObject
     {
-
-
     }
 }
