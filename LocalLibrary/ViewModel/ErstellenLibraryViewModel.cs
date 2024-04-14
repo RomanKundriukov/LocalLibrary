@@ -1,11 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LocalLibrary.Data;
+using LocalLibrary.View.ContentView;
 using System.Collections.ObjectModel;
 
 namespace LocalLibrary.ViewModel
 {
     public partial class ErstellenLibraryViewModel : ObservableObject
     {
+        ErstellenLibraryView? erstellenLibraryView;
+
         [ObservableProperty]
         public ObservableCollection<string> allDriversCollections = new();
 
@@ -23,19 +27,28 @@ namespace LocalLibrary.ViewModel
         {
             //create library
 
-            string driveLetter = auswehlteElement.ToString();
-            string folderName = allgemeinName;
-
-            string fullLibraryPath = Path.Combine(driveLetter, folderName);
+            string fullLibraryPath = Path.Combine(auswehlteElement, allgemeinName);
 
             try
             {
-                Directory.CreateDirectory(fullLibraryPath);
+                if (!Directory.Exists(fullLibraryPath))
+                {
+                    Directory.CreateDirectory(fullLibraryPath);
+                }
+                else
+                {
+                    await erstellenLibraryView.DisplayAlert("Ошибка", "Директория библиотеки уже существует", "OK");
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка при создании папки: {ex.Message}");
+                await erstellenLibraryView.DisplayAlert("Ошибка", "Директория библиотеки не была создана", "ОК");
             }
+        }
+
+        public ObservableCollection<string> GetAllDriversCollections()
+        {
+            return allDriversCollections;
         }
 
         //Bekommen die Buchstaben von alles Disk
@@ -43,14 +56,14 @@ namespace LocalLibrary.ViewModel
         {
             //bekommen alle Disk im Gerät
 
-            DriveInfo[] allDrivers = DriveInfo.GetDrives();
+            //DriveInfo[] allDrivers = DriveInfo.GetDrives();
 
-            foreach (var drive in allDrivers)
+            foreach (var drive in LocalDiskPC.diskBuchstabe())
             {
-                allDriversCollections.Add(drive.Name.ToString());
+                allDriversCollections.Add(drive.ToString());
                 OnPropertyChanged(nameof(allDriversCollections));
 
-                allDisks.Add(drive.Name.ToString());
+                allDisks.Add(drive.ToString());
                 OnPropertyChanged(nameof(allDisks));
             }
         }

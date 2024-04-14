@@ -2,6 +2,19 @@
 {
     public static class LocalDiskPC
     {
-        public static DriveInfo[] allDeivers = DriveInfo.GetDrives();
+
+        //Bekommen die Buchstaben von alles Disk
+        public static Array diskBuchstabe()
+        {
+            DriveInfo[] addDrivers = DriveInfo.GetDrives();
+
+            return addDrivers;
+        }
+
+        //bekomm Lybrary Path
+        //public static string libraryPath()
+        //{
+
+        //}
     }
 }

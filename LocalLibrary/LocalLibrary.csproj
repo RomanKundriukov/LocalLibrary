@@ -33,6 +33,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-preview.2.24128.5" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.20" />
 		<PackageReference Include="Syncfusion.Maui.Expander" Version="25.1.39" />
 	</ItemGroup>
 

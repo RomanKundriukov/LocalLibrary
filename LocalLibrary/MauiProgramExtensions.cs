@@ -1,4 +1,5 @@
-﻿using LocalLibrary.View;
+﻿using LocalLibrary.Data;
+using LocalLibrary.View;
 using LocalLibrary.View.ContentView;
 using LocalLibrary.View.NavigationsPanelView;
 using LocalLibrary.ViewModel;
@@ -17,6 +18,8 @@ namespace LocalLibrary
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            //bekommen alle Disk im Pc
+            LocalDiskPC.diskBuchstabe();
 
             //Transient кажлый раз будет генерироваться заново контект
             builder.Services.AddTransient<HauptSeiteView>();

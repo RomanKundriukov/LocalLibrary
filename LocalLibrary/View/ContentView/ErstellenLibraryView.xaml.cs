@@ -17,7 +17,9 @@ public partial class ErstellenLibraryView : ContentPage
         base.OnAppearing();
 
         //bekommen alle Disknamen
-        vm.diskBuchstabe();
+        vm.diskBuchstabe(
+        //bekommen alle Disknamen
+        vm.GetAllDriversCollections());
     }
 
     protected override void OnDisappearing()
