@@ -11,6 +11,21 @@ namespace LocalLibrary
     {
         public static MauiAppBuilder UseSharedMauiApp(this MauiAppBuilder builder)
         {
+
+            //var serviceProvider = builder.Services.BuildServiceProvider();
+            //using (var scope = serviceProvider.CreateScope())
+            //{
+            //    var context = scope.ServiceProvider.GetRequiredService<LibraryDBContext>();
+            //    if (!context.LibraryDBs.Any())
+            //    {
+            //        context.Database.EnsureCreated();
+            //    }
+            //    else
+            //    {
+            //        context.Database.Migrate();
+            //    }
+            //}
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -18,9 +33,12 @@ namespace LocalLibrary
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
             //bekommen alle Disk im Pc
             LocalDiskPC.diskBuchstabe();
 
+            //Create DB
+            builder.Services.AddDbContext<LibraryDBContext>();
             //Transient кажлый раз будет генерироваться заново контект
             builder.Services.AddTransient<HauptSeiteView>();
             builder.Services.AddTransient<HauptSeiteViewModel>();

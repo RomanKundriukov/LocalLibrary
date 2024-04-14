@@ -46,18 +46,9 @@ namespace LocalLibrary.ViewModel
             }
         }
 
-        public ObservableCollection<string> GetAllDriversCollections()
-        {
-            return allDriversCollections;
-        }
-
         //Bekommen die Buchstaben von alles Disk
         public void diskBuchstabe()
         {
-            //bekommen alle Disk im Gerät
-
-            //DriveInfo[] allDrivers = DriveInfo.GetDrives();
-
             foreach (var drive in LocalDiskPC.diskBuchstabe())
             {
                 allDriversCollections.Add(drive.ToString());
