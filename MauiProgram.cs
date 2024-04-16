@@ -24,6 +24,7 @@ namespace LocalLibrary
 
             //Create DB
             builder.Services.AddDbContext<LibraryDBContext>();
+
             //Transient кажлый раз будет генерироваться заново контект
             builder.Services.AddTransient<HauptSeiteView>();
             builder.Services.AddTransient<HauptSeiteViewModel>();

@@ -5,22 +5,34 @@ namespace LocalLibrary.Data
 {
     public class LibraryDBContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite($"Data Source={DbPath}");
-            //base.OnConfiguring(optionsBuilder);
-        }
+        public string DbPath { get; set; }
+        //public LibraryDBContext()
+        //{
+        //    var folder = Environment.SpecialFolder.LocalApplicationData;
+        //    var path = Environment.GetFolderPath(folder);
+        //    DbPath = Path.Combine(path, "Library.db");
+        //    if (!File.Exists(DbPath))
+        //    {
+        //        // Wenn nicht, erstellen Sie die Datei
+        //        using (File.Create(DbPath)) { }
+        //    }
+        //}
 
         public DbSet<LibraryDB> LibraryDBs { get; set; }
 
-        public string DbPath { get; set; }
-
-        public LibraryDBContext()
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "Library.db");
+            DbPath = Path.Combine(path, "Library.db");
+            optionsBuilder.UseSqlite($"Data Source={DbPath}");
 
+            if (!File.Exists(DbPath))
+            {
+                // Wenn nicht, erstellen Sie die Datei
+                using (File.Create(DbPath)) { }
+            }
+            //base.OnConfiguring(optionsBuilder);
         }
     }
 }
