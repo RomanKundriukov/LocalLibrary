@@ -1,9 +1,12 @@
-﻿using LocalLibrary.ViewModel;
+﻿using LocalLibrary.Data;
+using LocalLibrary.ViewModel;
 
 namespace LocalLibrary.Views.ContentView;
 
 public partial class StartPage : ContentPage
 {
+    LibraryDBContext db = new();
+
     public StartPage()
     {
         InitializeComponent();

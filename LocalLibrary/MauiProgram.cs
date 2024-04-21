@@ -10,6 +10,13 @@ namespace LocalLibrary
     {
         public static MauiApp CreateMauiApp()
         {
+
+            //using (var db = new LibraryDBContext())
+            //{
+            //    // Создаем базу данных (если она не существует) и применяем все ожидающие миграции
+            //    db.Database.EnsureCreated();
+            //}
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
