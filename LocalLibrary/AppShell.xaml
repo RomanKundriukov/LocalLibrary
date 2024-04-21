@@ -3,13 +3,13 @@
     x:Class="LocalLibrary.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:LocalLibrary"
-    Shell.FlyoutBehavior="Disabled"
-    Title="LocalLibrary">
+    xmlns:views="clr-namespace:LocalLibrary.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarHasShadow="False"
+    Shell.NavBarIsVisible="False">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+        ContentTemplate="{DataTemplate views:HauptSeitePage}"
+        Route="MeinPage" />
 </Shell>

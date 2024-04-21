@@ -1,1 +1,0 @@
-E:\Git_Repository\LocalLibrary\LocalLibrary\LocalLibrary.csproj;x64

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LocalLibrary.Views.ContentView.StartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:LocalLibrary.ViewModel"
+    Title="Detail"
+    x:DataType="viewmodel:StartContentViewModel"
+    BackgroundImageSource="background_content.png"
+    NavigationPage.HasNavigationBar="False">
+
+    <VerticalStackLayout VerticalOptions="Center">
+
+        <Label
+            FontSize="64"
+            HorizontalOptions="CenterAndExpand"
+            Text="Добро пожаловать в домашнюю библиотеку"
+            VerticalOptions="CenterAndExpand" />
+        <!--<Button
+       Text="Content 1"
+       Command="{Binding testCommand}"/>
+
+    <Button
+        Text="nav"
+        Clicked="ObjectClicked"/>-->
+    </VerticalStackLayout>
+</ContentPage>
