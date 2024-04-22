@@ -34,10 +34,12 @@ namespace LocalLibrary.Data
                 {
                     // Создаем файл
                     File.Create(dbFilePath).Close();
+                    Database.EnsureCreated();
                     Console.WriteLine("Файл базы данных создан успешно.");
                 }
                 else
                 {
+                    Database.Migrate();
                     Console.WriteLine("Файл базы данных уже существует.");
                 }
             }
