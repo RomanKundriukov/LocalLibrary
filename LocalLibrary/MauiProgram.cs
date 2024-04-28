@@ -32,6 +32,10 @@ namespace LocalLibrary
             //Create DB
             builder.Services.AddDbContext<LibraryDBContext>();
 
+            var dbContext = new LibraryDBContext();
+            dbContext.Database.EnsureCreated();
+            dbContext.Dispose();
+
             //Transient кажлый раз будет генерироваться заново контект
             builder.Services.AddTransient<HauptSeitePage>();
             builder.Services.AddTransient<HauptSeiteViewModel>();
