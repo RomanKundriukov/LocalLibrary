@@ -1,10 +1,10 @@
-using LocalLibrary.ViewModel;
+using LocalLibrary.ViewModels.ContentViewModel;
 
 namespace LocalLibrary.Views.ContentView;
 
 public partial class ErstellenLibraryPage : ContentPage
 {
-    ErstellenLibraryViewModel vm = new();
+    ErstellenLibraryViewModel vm = new ErstellenLibraryViewModel();
     public ErstellenLibraryPage()
     {
         InitializeComponent();
@@ -13,16 +13,18 @@ public partial class ErstellenLibraryPage : ContentPage
 
     protected override void OnAppearing()
     {
-        base.OnAppearing();
-
-        //bekommen alle Disknamen
         vm.diskBuchstabe();
-        ////bekommen alle Disknamen
-        //vm.GetAllDriversCollections();
+        base.OnAppearing();
     }
 
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
     }
+
+    public void GetAllert(string fehler, string allert, string ok)
+    {
+        DisplayAlert(fehler, allert, ok);
+    }
+
 }

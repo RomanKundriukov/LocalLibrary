@@ -1,8 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-
-namespace LocalLibrary.ViewModel
+﻿namespace LocalLibrary.ViewModels.ContentViewModel
 {
-    public partial class StartContentViewModel : ObservableObject
+    public partial class StartContentViewModel : BaseViewModel
     {
         //[ObservableProperty]
         //private string _title = "Title";

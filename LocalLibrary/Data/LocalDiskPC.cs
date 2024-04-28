@@ -10,11 +10,5 @@
 
             return addDrivers;
         }
-
-        //bekomm Lybrary Path
-        //public static string libraryPath()
-        //{
-
-        //}
     }
 }
