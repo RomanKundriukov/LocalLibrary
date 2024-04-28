@@ -8,7 +8,10 @@
 
             pathDbSqlite = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             pathDbSqlite = Path.Combine(pathDbSqlite, nameDb);
+
             return pathDbSqlite;
         }
+
+
     }
 }
