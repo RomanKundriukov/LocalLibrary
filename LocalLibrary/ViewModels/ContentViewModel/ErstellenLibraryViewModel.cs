@@ -1,14 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using LocalLibrary.Data;
-using LocalLibrary.Views.ContentView;
+using LocalLibrary.Services;
 using System.Collections.ObjectModel;
 
-namespace LocalLibrary.ViewModel
+namespace LocalLibrary.ViewModels.ContentViewModel
 {
-    public partial class ErstellenLibraryViewModel : ObservableObject
+    public partial class ErstellenLibraryViewModel : BaseViewModel
     {
-        ErstellenLibraryPage? erstellenLibraryView;
-
         [ObservableProperty]
         public ObservableCollection<string> allDriversCollections = new();
 
@@ -27,21 +25,26 @@ namespace LocalLibrary.ViewModel
             //create library
 
             string fullLibraryPath = Path.Combine(auswehlteElement, allgemeinName);
+            string sqlCommand = $"INSERT INTO [LibraryDBs] (libraryName, libraryPath) VALUES ('{allgemeinName}', '{fullLibraryPath}')";
+            string pathDb = PathDb.GetPath("LocalLibrary.db");
 
             try
             {
                 if (!Directory.Exists(fullLibraryPath))
                 {
                     Directory.CreateDirectory(fullLibraryPath);
+
+                    SqliteCommand.SetPathDb(pathDb, sqlCommand);
                 }
                 else
                 {
-                    await erstellenLibraryView.DisplayAlert("Ошибка", "Директория библиотеки уже существует", "OK");
+
+                    //return ErstellenLibraryPage.GetAllert("Ошибка", "Директория библиотеки уже существует", "ОК");
                 }
             }
             catch (Exception ex)
             {
-                await erstellenLibraryView.DisplayAlert("Ошибка", "Директория библиотеки не была создана", "ОК");
+                //erstellenLibraryPage.GetAllert("Ошибка", "Директория библиотеки не была создана", "ОК");
             }
         }
 

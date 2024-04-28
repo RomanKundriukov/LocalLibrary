@@ -1,4 +1,4 @@
-using LocalLibrary.ViewModel;
+using LocalLibrary.ViewModels.ContentViewModel;
 
 namespace LocalLibrary.Views.ContentView;
 
@@ -21,4 +21,10 @@ public partial class ErstellenLibraryPage : ContentPage
     {
         base.OnDisappearing();
     }
+
+    public void GetAllert(string fehler, string allert, string ok)
+    {
+        DisplayAlert(fehler, allert, ok);
+    }
+
 }

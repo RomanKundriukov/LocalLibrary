@@ -1,7 +1,10 @@
-﻿namespace LocalLibrary.Services
+﻿using LocalLibrary.Data;
+
+namespace LocalLibrary.Services
 {
     public static class PathDb
     {
+
         public static string GetPath(string nameDb)
         {
             string pathDbSqlite = string.Empty;
@@ -12,6 +15,18 @@
             return pathDbSqlite;
         }
 
-
+        public static void isDbExist()
+        {
+            if (File.Exists(PathDb.GetPath("LocalLibrary.db")))
+            {
+                return;
+            }
+            else
+            {
+                LibraryDBContext dBContext = new LibraryDBContext();
+                dBContext.Database.EnsureCreated();
+            }
+        }
     }
 }
+

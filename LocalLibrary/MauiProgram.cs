@@ -1,5 +1,6 @@
 ﻿using LocalLibrary.Data;
-using LocalLibrary.ViewModel;
+using LocalLibrary.Services;
+using LocalLibrary.ViewModels.ContentViewModel;
 using LocalLibrary.Views.ContentView;
 using Microsoft.Extensions.Logging;
 
@@ -25,11 +26,11 @@ namespace LocalLibrary
 
             //Create DB
             builder.Services.AddDbContext<LibraryDBContext>();
+            PathDb.isDbExist();
+            //var dbContext = new LibraryDBContext();
 
-            var dbContext = new LibraryDBContext();
-
-            dbContext.Database.EnsureCreated();
-            dbContext.Dispose();
+            //dbContext.Database.EnsureCreated();
+            //dbContext.Dispose();
 
             //Transient кажлый раз будет генерироваться заново контект
 

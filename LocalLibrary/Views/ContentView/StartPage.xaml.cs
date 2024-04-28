@@ -1,4 +1,4 @@
-﻿using LocalLibrary.ViewModel;
+﻿using LocalLibrary.ViewModels.ContentViewModel;
 
 namespace LocalLibrary.Views.ContentView;
 
