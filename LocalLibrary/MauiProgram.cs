@@ -1,4 +1,5 @@
-﻿using LocalLibrary.Data;
+﻿using CommunityToolkit.Maui;
+using LocalLibrary.Data;
 using LocalLibrary.Services;
 using LocalLibrary.ViewModels.ContentViewModel;
 using LocalLibrary.Views.ContentView;
@@ -10,7 +11,6 @@ namespace LocalLibrary
     {
         public static MauiApp CreateMauiApp()
         {
-
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -20,7 +20,6 @@ namespace LocalLibrary
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
             //bekommen alle Disk im Pc
             LocalDiskPC.diskBuchstabe();
 
@@ -41,6 +40,7 @@ namespace LocalLibrary
 
             builder.Services.AddSingleton<StartPage>();
             builder.Services.AddSingleton<StartContentViewModel>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

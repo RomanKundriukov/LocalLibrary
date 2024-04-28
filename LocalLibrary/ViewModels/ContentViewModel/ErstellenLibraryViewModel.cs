@@ -1,8 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using LocalLibrary.Data;
 using LocalLibrary.Services;
 using System.Collections.ObjectModel;
-using System.Windows.Forms;
 
 namespace LocalLibrary.ViewModels.ContentViewModel
 {
@@ -36,16 +36,18 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                     Directory.CreateDirectory(fullLibraryPath);
 
                     SqliteCommand.SetPathDb(pathDb, sqlCommand);
-                    MessageBox.Show("Директория библиотеки создана");
+
+                    MessagingCenter.Send(this, "LibraryErstellung", fullLibraryPath);
+
                 }
                 else
                 {
-                    MessageBox.Show("Директория библиотеки уже существует");
+                    //MessageBox.Show("Директория библиотеки уже существует");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Директория библиотеки не была создана");
+                //MessageBox.Show("Директория библиотеки не была создана");
             }
         }
 
