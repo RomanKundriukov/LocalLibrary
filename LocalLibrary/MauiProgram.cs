@@ -27,10 +27,6 @@ namespace LocalLibrary
             //Create DB
             builder.Services.AddDbContext<LibraryDBContext>();
             PathDb.isDbExist();
-            //var dbContext = new LibraryDBContext();
-
-            //dbContext.Database.EnsureCreated();
-            //dbContext.Dispose();
 
             //Transient кажлый раз будет генерироваться заново контект
 
