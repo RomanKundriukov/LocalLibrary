@@ -4,7 +4,7 @@ namespace LocalLibrary.Views.ContentView;
 
 public partial class ErstellenLibraryPage : ContentPage
 {
-    ErstellenLibraryViewModel vm = new();
+    ErstellenLibraryViewModel vm = new ErstellenLibraryViewModel();
     public ErstellenLibraryPage()
     {
         InitializeComponent();
@@ -13,12 +13,8 @@ public partial class ErstellenLibraryPage : ContentPage
 
     protected override void OnAppearing()
     {
-        base.OnAppearing();
-
-        //bekommen alle Disknamen
         vm.diskBuchstabe();
-        ////bekommen alle Disknamen
-        //vm.GetAllDriversCollections();
+        base.OnAppearing();
     }
 
     protected override void OnDisappearing()

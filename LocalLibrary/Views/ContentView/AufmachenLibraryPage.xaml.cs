@@ -4,7 +4,7 @@ namespace LocalLibrary.Views.ContentView;
 
 public partial class AufmachenLibraryPage : ContentPage
 {
-    AufmachenLibraryViewModel vm = new();
+    AufmachenLibraryViewModel vm = new AufmachenLibraryViewModel();
     public AufmachenLibraryPage()
     {
         InitializeComponent();

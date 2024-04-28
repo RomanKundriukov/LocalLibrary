@@ -1,7 +1,6 @@
 ﻿using LocalLibrary.Data;
 using LocalLibrary.ViewModel;
 using LocalLibrary.Views.ContentView;
-using LocalLibrary.Views.NavigationsPanelView;
 using Microsoft.Extensions.Logging;
 
 namespace LocalLibrary
@@ -10,12 +9,6 @@ namespace LocalLibrary
     {
         public static MauiApp CreateMauiApp()
         {
-
-            //using (var db = new LibraryDBContext())
-            //{
-            //    // Создаем базу данных (если она не существует) и применяем все ожидающие миграции
-            //    db.Database.EnsureCreated();
-            //}
 
             var builder = MauiApp.CreateBuilder();
             builder
@@ -26,6 +19,7 @@ namespace LocalLibrary
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
             //bekommen alle Disk im Pc
             LocalDiskPC.diskBuchstabe();
 
@@ -34,11 +28,9 @@ namespace LocalLibrary
 
             var dbContext = new LibraryDBContext();
             dbContext.Database.EnsureCreated();
-            dbContext.Dispose();
+            //dbContext.Dispose();
 
             //Transient кажлый раз будет генерироваться заново контект
-            builder.Services.AddTransient<HauptSeitePage>();
-            builder.Services.AddTransient<HauptSeiteViewModel>();
 
             builder.Services.AddTransient<ErstellenLibraryPage>();
             builder.Services.AddTransient<ErstellenLibraryViewModel>();
@@ -48,8 +40,6 @@ namespace LocalLibrary
 
             //Singleton один раз генерится и действует во время всей жизни приложения
 
-            builder.Services.AddSingleton<NavPage>();
-            builder.Services.AddSingleton<NavigationsPanelViewModel>();
 
             builder.Services.AddSingleton<StartPage>();
             builder.Services.AddSingleton<StartContentViewModel>();
