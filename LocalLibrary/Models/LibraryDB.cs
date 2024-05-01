@@ -16,6 +16,12 @@ namespace LocalLibrary.Model
         [Column("libraryPath")]
         public string libraryPath { get; set; }
 
+        [Column("libraryIconName")]
+        public string libraryIconName { get; set; }
+
+        [Column("libraryIconPath")]
+        public string libraryIconPath { get; set; }
+
         public List<BuchDB> BuchDBs { get; set; }
     }
 }

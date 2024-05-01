@@ -25,6 +25,8 @@ namespace LocalLibrary
                 });
             //bekommen alle Disk im Pc
             LocalDiskPC.diskBuchstabe();
+            //create Ordner für Images
+            PathImages.GetPathImages();
 
             //Create DB
             builder.Services.AddDbContext<LibraryDBContext>();
