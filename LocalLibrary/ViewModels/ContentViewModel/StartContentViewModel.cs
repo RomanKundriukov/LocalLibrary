@@ -48,7 +48,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         public void GetAllLibrary()
         {
             string pathDb = PathDb.GetPath("LocalLibrary.db");
-            string sqlCommand = "SELECT libraryName, libraryIconName FROM [LibraryDBs]";
+            string sqlCommand = "SELECT * FROM [LibraryDBs]";
 
             var allLibrary = SqliteCommand.GetAlllibrary(pathDb, sqlCommand);
         }
