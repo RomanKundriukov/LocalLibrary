@@ -17,6 +17,7 @@ public partial class StartPage : ContentPage
     protected override void OnAppearing()
     {
         vm.diskBuchstabe();
+        vm.GetAllLibrary();
         base.OnAppearing();
     }
 

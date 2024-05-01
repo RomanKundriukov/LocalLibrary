@@ -48,9 +48,30 @@ namespace LocalLibrary.Services
             }
         }
 
-        public static void GetAll(string path, string command)
+        public static DataTable GetAlllibrary(string path, string command)
         {
+            using var conn = new SqliteConnection("Data Source=" + path);
+            conn.Open();
 
+            try
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = command;
+
+                var data = new DataTable();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    data.Load(reader);
+                }
+                cmd.Connection.CloseAsync();
+                return data;
+            }
+            catch (Exception)
+            {
+                conn.CloseAsync();
+                throw;
+            }
         }
 
         public static bool isExistiert(string path, string command)

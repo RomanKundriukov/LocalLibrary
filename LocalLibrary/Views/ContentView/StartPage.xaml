@@ -97,12 +97,21 @@
                     Spacing="10"
                     ZIndex="1">
 
-                    <Picker
-                        Title="Выберите Библиотеку"
-                        BackgroundColor="#ffffff"
-                        SelectedIndex="0"
-                        TextColor="Black"
-                        TitleColor="Black" />
+                    <ScrollView>
+                        <CollectionView>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
 
                     <Button
                         BackgroundColor="#6948bc"
