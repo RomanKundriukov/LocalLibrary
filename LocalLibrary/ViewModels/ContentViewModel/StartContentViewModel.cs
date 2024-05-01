@@ -70,7 +70,6 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [ObservableProperty]
         public bool fotoIsUpload = false;
 
-        public string fotoLibraryName = "";
 
         //Aufmachen und Delete Library
 
@@ -93,9 +92,20 @@ namespace LocalLibrary.ViewModels.ContentViewModel
             {
                 //create library
 
+
+
                 string fullLibraryPath = Path.Combine(auswehlteElement, allgemeinName);
                 string fullLibraryIconPath = Path.Combine(PathImages.GetPathImages(), $"{allgemeinName}.png");
-                string sqlCommand = $"INSERT INTO [LibraryDBs] (libraryName, libraryPath, libraryIconName, libraryIconPath) VALUES ('{allgemeinName}', '{fullLibraryPath}', '{allgemeinName}.png', '{fullLibraryIconPath}')";
+
+                string sqlCommand = "";
+                if (fotoIsUpload)
+                {
+                    sqlCommand = $"INSERT INTO [LibraryDBs] (libraryName, libraryPath, libraryIconName, libraryIconPath) VALUES ('{allgemeinName}', '{fullLibraryPath}', '{allgemeinName}.png', '{fullLibraryIconPath}')";
+                }
+                else
+                {
+                    sqlCommand = $"INSERT INTO [LibraryDBs] (libraryName, libraryPath, libraryIconName, libraryIconPath) VALUES ('{allgemeinName}', '{fullLibraryPath}', 'default', 'default')";
+                }
                 string pathDb = PathDb.GetPath("LocalLibrary.db");
 
                 string sqlCommandLike = $"SELECT * FROM [LibraryDBs] WHERE libraryName = '{allgemeinName}'";
@@ -131,29 +141,38 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [RelayCommand]
         public async void IconLibraryUploaad()
         {
-            try
+            if (allgemeinName == "" || auswehlteElement == "")
             {
-                var photo = await MediaPicker.PickPhotoAsync();
-
-                if (photo != null)
+                toastShow("Выберите диск и введите название библиотеки");
+                return;
+            }
+            else
+            {
+                try
                 {
-                    string ordnerPath = PathImages.GetPathImages();
-                    string fileName = Path.Combine(ordnerPath, $"{allgemeinName}.png");
+                    var photo = await MediaPicker.PickPhotoAsync();
 
-                    using (var stream = await photo.OpenReadAsync())
-                    using (var fileStream = File.OpenWrite(fileName))
+                    if (photo != null)
                     {
-                        await stream.CopyToAsync(fileStream);
-                    }
+                        string ordnerPath = PathImages.GetPathImages();
+                        string fileName = Path.Combine(ordnerPath, $"{allgemeinName}.png");
 
-                    toastShow("Фото успешно загружено");
+                        using (var stream = await photo.OpenReadAsync())
+                        using (var fileStream = File.OpenWrite(fileName))
+                        {
+                            await stream.CopyToAsync(fileStream);
+                        }
+                        fotoIsUpload = true;
+                        toastShow("Фото успешно загружено");
+                    }
+                }
+                catch (Exception)
+                {
+                    fotoIsUpload = false;
+                    toastShow("Фото не было загружено");
                 }
             }
-            catch (Exception)
-            {
 
-                toastShow("Фото не было загружено");
-            }
         }
 
         #endregion
