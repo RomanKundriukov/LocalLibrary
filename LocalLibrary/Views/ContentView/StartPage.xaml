@@ -65,6 +65,18 @@
                         Opacity="1"
                         Text="Создать"
                         TextColor="Black" />
+
+                    <Button
+                        BackgroundColor="#6948bc"
+                        Command="{Binding IconLibraryUploaadCommand}"
+                        Opacity="1"
+                        Text="Загрузить изображение"
+                        TextColor="Black" />
+
+                    <Image
+                        HeightRequest="120"
+                        IsVisible="{Binding FotoIsUpload}"
+                        WidthRequest="120" />
                 </VerticalStackLayout>
             </Border>
 

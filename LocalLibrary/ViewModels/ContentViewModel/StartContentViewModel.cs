@@ -67,6 +67,10 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [ObservableProperty]
         public string allgemeinName = "";
 
+        [ObservableProperty]
+        public bool fotoIsUpload = false;
+
+        public string fotoLibraryName = "";
 
         //Aufmachen und Delete Library
 
@@ -90,7 +94,8 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                 //create library
 
                 string fullLibraryPath = Path.Combine(auswehlteElement, allgemeinName);
-                string sqlCommand = $"INSERT INTO [LibraryDBs] (libraryName, libraryPath) VALUES ('{allgemeinName}', '{fullLibraryPath}')";
+                string fullLibraryIconPath = Path.Combine(PathImages.GetPathImages(), $"{allgemeinName}.png");
+                string sqlCommand = $"INSERT INTO [LibraryDBs] (libraryName, libraryPath, libraryIconName, libraryIconPath) VALUES ('{allgemeinName}', '{fullLibraryPath}', '{allgemeinName}.png', '{fullLibraryIconPath}')";
                 string pathDb = PathDb.GetPath("LocalLibrary.db");
 
                 string sqlCommandLike = $"SELECT * FROM [LibraryDBs] WHERE libraryName = '{allgemeinName}'";
@@ -121,6 +126,34 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                 }
             }
 
+        }
+
+        [RelayCommand]
+        public async void IconLibraryUploaad()
+        {
+            try
+            {
+                var photo = await MediaPicker.PickPhotoAsync();
+
+                if (photo != null)
+                {
+                    string ordnerPath = PathImages.GetPathImages();
+                    string fileName = Path.Combine(ordnerPath, $"{allgemeinName}.png");
+
+                    using (var stream = await photo.OpenReadAsync())
+                    using (var fileStream = File.OpenWrite(fileName))
+                    {
+                        await stream.CopyToAsync(fileStream);
+                    }
+
+                    toastShow("Фото успешно загружено");
+                }
+            }
+            catch (Exception)
+            {
+
+                toastShow("Фото не было загружено");
+            }
         }
 
         #endregion
