@@ -6,7 +6,7 @@
     xmlns:viewmodel="clr-namespace:LocalLibrary.ViewModels.ContentViewModel"
     x:DataType="viewmodel:StartContentViewModel"
     BackgroundImageSource="background_content.png"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="True">
 
     <VerticalStackLayout VerticalOptions="Center">
 

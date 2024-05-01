@@ -6,11 +6,11 @@
     xmlns:local="clr-namespace:LocalLibrary"
     xmlns:views="clr-namespace:LocalLibrary.Views.ContentView"
     FlyoutBackground="White"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="False"
-    Shell.TabBarIsVisible="False">
+    Shell.TabBarIsVisible="True">
 
-    <Shell.FlyoutHeader>
+    <!--<Shell.FlyoutHeader>
         <VerticalStackLayout>
             <Image
                 Margin="0,10,0,10"
@@ -35,15 +35,21 @@
                 TextColor="Black"
                 VerticalOptions="CenterAndExpand" />
         </HorizontalStackLayout>
-    </Shell.FlyoutFooter>
+    </Shell.FlyoutFooter>-->
 
-    <Shell.ItemTemplate>
+    <!--<Shell.ItemTemplate>
         <DataTemplate>
-            <Grid
-                ColumnDefinitions="Auto, *"
-                ColumnSpacing="10"
-                RowDefinitions="*,*,*"
-                RowSpacing="10">
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <HorizontalStackLayout
                     Grid.Row="0"
                     HorizontalOptions="FillAndExpand"
@@ -63,9 +69,9 @@
                 </HorizontalStackLayout>
             </Grid>
         </DataTemplate>
-    </Shell.ItemTemplate>
+    </Shell.ItemTemplate>-->
 
-    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
+    <!--<FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate views:StartPage}"
@@ -81,6 +87,24 @@
             ContentTemplate="{DataTemplate views:AufmachenLibraryPage}"
             Icon="aufmachen.png"
             Route="AufmachenLibraryPage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
+
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate views:StartPage}"
+            Icon="home.png"
+            Route="StartPage" />
+        <ShellContent
+            Title="Create"
+            ContentTemplate="{DataTemplate views:ErstellenLibraryPage}"
+            Icon="erstellen.png"
+            Route="ErstellenLibraryPage" />
+        <ShellContent
+            Title="Aufmachen"
+            ContentTemplate="{DataTemplate views:AufmachenLibraryPage}"
+            Icon="aufmachen.png"
+            Route="AufmachenLibraryPage" />
+    </TabBar>
 
 </Shell>
