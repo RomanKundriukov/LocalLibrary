@@ -5,22 +5,109 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:LocalLibrary.ViewModels.ContentViewModel"
     x:DataType="viewmodel:StartContentViewModel"
-    BackgroundImageSource="background_content.png"
+    BackgroundImageSource="background_ocean.png"
     NavigationPage.HasNavigationBar="True">
 
-    <VerticalStackLayout VerticalOptions="Center">
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <HorizontalStackLayout
+            HorizontalOptions="FillAndExpand"
+            Spacing="10"
+            VerticalOptions="StartAndExpand">
 
-        <Label
-            FontSize="64"
-            HorizontalOptions="CenterAndExpand"
-            Text="Добро пожаловать в домашнюю библиотеку"
-            VerticalOptions="CenterAndExpand" />
-        <!--<Button
-       Text="Content 1"
-       Command="{Binding testCommand}"/>
+            <FlexLayout Margin="10" Padding="10">
+                <Image
+                    HeightRequest="90"
+                    Source="logo.png"
+                    WidthRequest="90" />
+                <Label
+                    FontFamily="de"
+                    FontSize="36"
+                    Text="Local Library"
+                    VerticalTextAlignment="Center" />
+            </FlexLayout>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Border
+                BackgroundColor="#d2cfec"
+                HeightRequest="450"
+                Opacity="0.6"
+                WidthRequest="350"
+                ZIndex="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    Opacity="1"
+                    Spacing="10"
+                    ZIndex="1">
 
-    <Button
-        Text="nav"
-        Clicked="ObjectClicked"/>-->
+                    <Picker
+                        Title="Выберите диск"
+                        BackgroundColor="#ffffff"
+                        ItemsSource="{Binding AllDriversCollections}"
+                        SelectedIndex="0"
+                        SelectedItem="{Binding AuswehlteElement}"
+                        TextColor="Black"
+                        TitleColor="Black" />
+
+                    <Entry
+                        BackgroundColor="#ffffff"
+                        FontFamily="rus"
+                        Placeholder="Введите имя"
+                        PlaceholderColor="Black"
+                        Text="{Binding AllgemeinName}"
+                        TextColor="Black" />
+
+                    <Button
+                        BackgroundColor="#6948bc"
+                        Command="{Binding erstellungDirectoryCommand}"
+                        FontFamily="rus"
+                        Opacity="1"
+                        Text="Создать"
+                        TextColor="Black" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border
+                BackgroundColor="#d2cfec"
+                HeightRequest="450"
+                Opacity="0.6"
+                WidthRequest="350"
+                ZIndex="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    Opacity="1"
+                    Spacing="10"
+                    ZIndex="1">
+
+                    <Picker
+                        Title="Выберите Библиотеку"
+                        BackgroundColor="#ffffff"
+                        SelectedIndex="0"
+                        TextColor="Black"
+                        TitleColor="Black" />
+
+                    <Button
+                        BackgroundColor="#6948bc"
+                        FontFamily="rus"
+                        Opacity="1"
+                        Text="Открыть"
+                        TextColor="Black" />
+
+                    <Button
+                        BackgroundColor="#6948bc"
+                        FontFamily="rus"
+                        Opacity="1"
+                        Text="Удалить"
+                        TextColor="Black" />
+                </VerticalStackLayout>
+            </Border>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

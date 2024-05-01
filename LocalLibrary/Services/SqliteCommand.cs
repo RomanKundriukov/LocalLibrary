@@ -19,17 +19,6 @@ namespace LocalLibrary.Services
             }
         }
 
-        //public static void SetParhDb(string path, string command)
-        //{
-        //    using var cmd = new SqlCommand()
-        //    {
-        //        Connection = Connection(path),
-        //        CommandType = CommandType.Text,
-        //        CommandText = command
-        //    };
-
-        //    cmd.Connection.Close();
-        //}
         public static void SetPathDb(string path, string command)
         {
             // Erstellen Sie eine Verbindung zur SQLite-Datenbank
@@ -48,11 +37,49 @@ namespace LocalLibrary.Services
                 // Führen Sie den Befehl aus
                 cmd.ExecuteNonQuery();
             }
+            catch (Exception)
+            {
+                throw;
+            }
             finally
             {
                 // Schließen Sie die Verbindung zur Datenbank, unabhängig davon, ob ein Fehler aufgetreten ist oder nicht
                 conn.Close();
             }
         }
+
+        public static void GetAll(string path, string command)
+        {
+
+        }
+
+        public static bool isExistiert(string path, string command)
+        {
+            using var conn = new SqliteConnection("Data Source=" + path);
+            conn.Open();
+            try
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = command;
+
+                //cmd.ExecuteNonQuery();
+                var result = cmd.ExecuteScalar();
+
+                if (result != null)
+                    result = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return false;
+        }
     }
 }
+

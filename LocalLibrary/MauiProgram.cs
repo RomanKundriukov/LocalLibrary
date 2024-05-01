@@ -1,8 +1,9 @@
-﻿using CommunityToolkit.Maui;
-using LocalLibrary.Data;
+﻿using LocalLibrary.Data;
 using LocalLibrary.Services;
 using LocalLibrary.ViewModels.ContentViewModel;
+using LocalLibrary.ViewModels.PopupViewModel;
 using LocalLibrary.Views.ContentView;
+using LocalLibrary.Views.PopupPages;
 using Microsoft.Extensions.Logging;
 
 namespace LocalLibrary
@@ -19,6 +20,8 @@ namespace LocalLibrary
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("rus.ttf", "rus");
+                    fonts.AddFont("de.ttf", "de");
                 });
             //bekommen alle Disk im Pc
             LocalDiskPC.diskBuchstabe();
@@ -29,17 +32,14 @@ namespace LocalLibrary
 
             //Transient кажлый раз будет генерироваться заново контект
 
-            builder.Services.AddTransient<ErstellenLibraryPage>();
-            builder.Services.AddTransient<ErstellenLibraryViewModel>();
-
-            builder.Services.AddTransient<AufmachenLibraryPage>();
-            builder.Services.AddTransient<AufmachenLibraryViewModel>();
 
             //Singleton один раз генерится и действует во время всей жизни приложения
 
+            builder.Services.AddTransient<PopupMeldung>();
+            builder.Services.AddTransient<PopupMeldungViewModel>();
 
             builder.Services.AddSingleton<StartPage>();
-            builder.Services.AddSingleton<StartContentViewModel>();
+            builder.Services.AddTransient<StartContentViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

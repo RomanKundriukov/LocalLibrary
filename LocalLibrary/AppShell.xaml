@@ -95,16 +95,7 @@
             ContentTemplate="{DataTemplate views:StartPage}"
             Icon="home.png"
             Route="StartPage" />
-        <ShellContent
-            Title="Create"
-            ContentTemplate="{DataTemplate views:ErstellenLibraryPage}"
-            Icon="erstellen.png"
-            Route="ErstellenLibraryPage" />
-        <ShellContent
-            Title="Aufmachen"
-            ContentTemplate="{DataTemplate views:AufmachenLibraryPage}"
-            Icon="aufmachen.png"
-            Route="AufmachenLibraryPage" />
+
     </TabBar>
 
 </Shell>

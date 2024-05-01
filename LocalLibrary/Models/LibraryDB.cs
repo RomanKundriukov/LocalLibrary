@@ -10,6 +10,7 @@ namespace LocalLibrary.Model
         public int libraryID { get; set; }
 
         [Column("libraryName")]
+        [Required]
         public string libraryName { get; set; }
 
         [Column("libraryPath")]
