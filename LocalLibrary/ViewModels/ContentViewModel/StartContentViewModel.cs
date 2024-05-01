@@ -70,6 +70,9 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [ObservableProperty]
         public bool fotoIsUpload = false;
 
+        [ObservableProperty]
+        public string imageSource = "";
+
 
         //Aufmachen und Delete Library
 
@@ -163,12 +166,16 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                             await stream.CopyToAsync(fileStream);
                         }
                         fotoIsUpload = true;
+                        OnPropertyChanged(nameof(FotoIsUpload));
+                        imageSource = fileName;
+                        OnPropertyChanged(nameof(ImageSource));
                         toastShow("Фото успешно загружено");
                     }
                 }
                 catch (Exception)
                 {
                     fotoIsUpload = false;
+                    OnPropertyChanged(nameof(FotoIsUpload));
                     toastShow("Фото не было загружено");
                 }
             }

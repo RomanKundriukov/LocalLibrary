@@ -76,6 +76,7 @@
                     <Image
                         HeightRequest="120"
                         IsVisible="{Binding FotoIsUpload}"
+                        Source="{Binding ImageSource}"
                         WidthRequest="120" />
                 </VerticalStackLayout>
             </Border>
