@@ -54,7 +54,6 @@
 
                     <Entry
                         BackgroundColor="#ffffff"
-                        FontFamily="rus"
                         Placeholder="Введите имя"
                         PlaceholderColor="Black"
                         Text="{Binding AllgemeinName}"
@@ -63,7 +62,6 @@
                     <Button
                         BackgroundColor="#6948bc"
                         Command="{Binding erstellungDirectoryCommand}"
-                        FontFamily="rus"
                         Opacity="1"
                         Text="Создать"
                         TextColor="Black" />
@@ -95,14 +93,12 @@
 
                     <Button
                         BackgroundColor="#6948bc"
-                        FontFamily="rus"
                         Opacity="1"
                         Text="Открыть"
                         TextColor="Black" />
 
                     <Button
                         BackgroundColor="#6948bc"
-                        FontFamily="rus"
                         Opacity="1"
                         Text="Удалить"
                         TextColor="Black" />

@@ -80,38 +80,47 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [RelayCommand]
         public async Task erstellungDirectory()
         {
-            //create library
-
-            string fullLibraryPath = Path.Combine(auswehlteElement, allgemeinName);
-            string sqlCommand = $"INSERT INTO [LibraryDBs] (libraryName, libraryPath) VALUES ('{allgemeinName}', '{fullLibraryPath}')";
-            string pathDb = PathDb.GetPath("LocalLibrary.db");
-
-            string sqlCommandLike = $"SELECT * FROM [LibraryDBs] WHERE libraryName = '{allgemeinName}'";
-            try
+            if (allgemeinName == "" || auswehlteElement == "")
             {
-                if (!Directory.Exists(fullLibraryPath))
-                {
-                    if (!SqliteCommand.isExistiert(pathDb, sqlCommandLike))
-                    {
-                        Directory.CreateDirectory(fullLibraryPath);
+                toastShow("Выберите диск и введите название библиотеки");
+                return;
+            }
+            else
+            {
+                //create library
 
-                        SqliteCommand.SetPathDb(pathDb, sqlCommand);
-                        toastShow("Библиотка была успешно создана");
+                string fullLibraryPath = Path.Combine(auswehlteElement, allgemeinName);
+                string sqlCommand = $"INSERT INTO [LibraryDBs] (libraryName, libraryPath) VALUES ('{allgemeinName}', '{fullLibraryPath}')";
+                string pathDb = PathDb.GetPath("LocalLibrary.db");
+
+                string sqlCommandLike = $"SELECT * FROM [LibraryDBs] WHERE libraryName = '{allgemeinName}'";
+                try
+                {
+                    if (!Directory.Exists(fullLibraryPath))
+                    {
+                        if (!SqliteCommand.isExistiert(pathDb, sqlCommandLike))
+                        {
+                            Directory.CreateDirectory(fullLibraryPath);
+
+                            SqliteCommand.SetPathDb(pathDb, sqlCommand);
+                            toastShow("Библиотка была успешно создана");
+                        }
+                        else
+                        {
+                            toastShow("Директория библиотеки уже существует");
+                        }
                     }
                     else
                     {
                         toastShow("Директория библиотеки уже существует");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    toastShow("Директория библиотеки уже существует");
+                    toastShow("Директория библиотеки не была создана");
                 }
             }
-            catch (Exception ex)
-            {
-                toastShow("Директория библиотеки не была создана");
-            }
+
         }
 
         #endregion
