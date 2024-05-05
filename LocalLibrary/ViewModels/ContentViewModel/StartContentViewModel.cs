@@ -114,6 +114,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         public void selectDrive(LocalLibraryCollection lib)
         {
 
+            auswehlteElement = lib.LibraryName;
             OnPropertyChanged(nameof(auswehlteElement));
         }
 
