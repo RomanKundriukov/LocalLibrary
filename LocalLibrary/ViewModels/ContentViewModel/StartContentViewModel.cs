@@ -2,8 +2,10 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using LocalLibrary.Data;
+using LocalLibrary.Models;
 using LocalLibrary.Services;
 using System.Collections.ObjectModel;
+using System.Data;
 
 namespace LocalLibrary.ViewModels.ContentViewModel
 {
@@ -51,6 +53,26 @@ namespace LocalLibrary.ViewModels.ContentViewModel
             string sqlCommand = "SELECT * FROM [LibraryDBs]";
 
             var allLibrary = SqliteCommand.GetAlllibrary(pathDb, sqlCommand);
+
+            foreach (DataRow row in allLibrary.Rows)
+            {
+                //LocalLibraryCollection localLibraryCollection = new()
+                //{
+                //    LibraryName = row["libraryName"].ToString(),
+                //    LibraryIcon = row["libraryIconPath"].ToString()
+                //};
+
+                collections.Add(new LocalLibraryCollection
+                {
+                    LibraryIcon = row["libraryIconPath"].ToString(),
+                    LibraryName = row["libraryName"].ToString()
+                });
+                //allLibraryCollections.Add(row["libraryName"].ToString());
+
+                //allLibraryImagePathCollections.Add(row["libraryIconPath"].ToString());
+
+            }
+            OnPropertyChanged(nameof(collections));
         }
         #endregion
 
@@ -80,8 +102,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         //Aufmachen und Delete Library
 
         [ObservableProperty]
-        public ObservableCollection<string> allLibraryCollections = new();
-
+        public ObservableCollection<LocalLibraryCollection> collections = new();
         #endregion
 
         #region Commands
