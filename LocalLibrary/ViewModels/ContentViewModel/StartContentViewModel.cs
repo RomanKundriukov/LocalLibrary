@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using LocalLibrary.Data;
 using LocalLibrary.Models;
 using LocalLibrary.Services;
+using LocalLibrary.Views.ContentView;
 using System.Collections.ObjectModel;
 using System.Data;
 
@@ -98,6 +99,8 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [ObservableProperty]
         public string imageSource = "";
 
+        [ObservableProperty]
+        LocalLibraryCollection localLibraryCollection = new();
 
         //Aufmachen und Delete Library
 
@@ -106,6 +109,27 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         #endregion
 
         #region Commands
+
+        [RelayCommand]
+        public void selectDrive(LocalLibraryCollection lib)
+        {
+
+            OnPropertyChanged(nameof(auswehlteElement));
+        }
+
+        [RelayCommand]
+        public async Task aufmachenDirectory()
+        {
+            if (auswehlteElement == null)
+            {
+                toastShow("Выберите библиотеку");
+                return;
+            }
+            else
+            {
+                await Shell.Current.GoToAsync(nameof(LibraryContent));
+            }
+        }
 
         [RelayCommand]
         public async Task erstellungDirectory()

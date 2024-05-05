@@ -67,6 +67,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\davyrib.ttf" />
 	  <None Remove="Resources\Fonts\de.ttf" />
 	  <None Remove="Resources\Fonts\rus.TTF" />
 	  <None Remove="Resources\Images\reload.svg" />
@@ -93,6 +94,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\ContentView\LibraryContent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentView\StartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

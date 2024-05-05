@@ -20,7 +20,7 @@
                     Source="logo.png"
                     WidthRequest="90" />
                 <Label
-                    FontFamily="de"
+                    FontFamily="davy"
                     FontSize="36"
                     Text="Local Library"
                     VerticalTextAlignment="Center" />
@@ -102,7 +102,11 @@
                             BackgroundColor="Wheat"
                             HeightRequest="250"
                             ItemsSource="{Binding Collections}"
-                            SelectionMode="Multiple">
+                            SelectedItem="{Binding LocalLibraryCollection}"
+                            SelectionMode="Single">
+                            <CollectionView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding selectDriveCommand}" CommandParameter="{Binding LocalLibraryCollection}" />
+                            </CollectionView.GestureRecognizers>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Padding="10">
@@ -131,6 +135,7 @@
 
                     <Button
                         BackgroundColor="#6948bc"
+                        Command="{Binding aufmachenDirectoryCommand}"
                         Opacity="1"
                         Text="Открыть"
                         TextColor="Black" />

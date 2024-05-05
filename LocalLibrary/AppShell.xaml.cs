@@ -8,6 +8,7 @@ namespace LocalLibrary
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(StartPage), typeof(StartPage));
+            Routing.RegisterRoute(nameof(LibraryContent), typeof(LibraryContent));
         }
     }
 }
