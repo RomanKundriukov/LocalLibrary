@@ -3,8 +3,8 @@
     x:Class="LocalLibrary.Views.ContentView.StartPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:LocalLibrary.Models"
     xmlns:viewmodel="clr-namespace:LocalLibrary.ViewModels.ContentViewModel"
-    x:DataType="viewmodel:StartContentViewModel"
     BackgroundImageSource="background_ocean.png"
     NavigationPage.HasNavigationBar="True">
 
@@ -20,7 +20,7 @@
                     Source="logo.png"
                     WidthRequest="90" />
                 <Label
-                    FontFamily="de"
+                    FontFamily="davy"
                     FontSize="36"
                     Text="Local Library"
                     VerticalTextAlignment="Center" />
@@ -76,6 +76,7 @@
                     <Image
                         HeightRequest="120"
                         IsVisible="{Binding FotoIsUpload}"
+                        Source="{Binding ImageSource}"
                         WidthRequest="120" />
                 </VerticalStackLayout>
             </Border>
@@ -96,15 +97,45 @@
                     Spacing="10"
                     ZIndex="1">
 
-                    <Picker
-                        Title="Выберите Библиотеку"
-                        BackgroundColor="#ffffff"
-                        SelectedIndex="0"
-                        TextColor="Black"
-                        TitleColor="Black" />
+                    <Grid>
+                        <CollectionView
+                            BackgroundColor="Wheat"
+                            HeightRequest="250"
+                            ItemsSource="{Binding Collections}"
+                            SelectedItem="{Binding LocalLibraryCollection}"
+                            SelectionMode="Single">
+                            <CollectionView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding selectDriveCommand}" CommandParameter="{Binding LocalLibraryCollection}" />
+                            </CollectionView.GestureRecognizers>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image
+                                            Grid.Column="0"
+                                            Margin="0,0,10,0"
+                                            HeightRequest="90"
+                                            Source="{Binding LibraryIcon}"
+                                            WidthRequest="90" />
+                                        <Label
+                                            Grid.Column="1"
+                                            FontSize="24"
+                                            Text="{Binding LibraryName}"
+                                            TextColor="Black"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+
 
                     <Button
                         BackgroundColor="#6948bc"
+                        Command="{Binding aufmachenDirectoryCommand}"
                         Opacity="1"
                         Text="Открыть"
                         TextColor="Black" />
@@ -114,6 +145,12 @@
                         Opacity="1"
                         Text="Удалить"
                         TextColor="Black" />
+
+                    <ImageButton
+                        Clicked="Refresh"
+                        HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Source="reload.png" />
                 </VerticalStackLayout>
             </Border>
         </HorizontalStackLayout>

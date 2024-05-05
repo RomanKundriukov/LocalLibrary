@@ -11,12 +11,14 @@ public partial class StartPage : ContentPage
     public StartPage()
     {
         InitializeComponent();
-        BindingContext = vm;
+        this.BindingContext = vm;
     }
 
     protected override void OnAppearing()
     {
+        vm.collections.Clear();
         vm.diskBuchstabe();
+        vm.GetAllLibrary();
         base.OnAppearing();
     }
 
@@ -28,5 +30,12 @@ public partial class StartPage : ContentPage
         popVm.setMeldungMessage(message);
         PopupMeldung pop = new PopupMeldung();
         this.ShowPopup(pop);
+    }
+
+    public void Refresh(object sender, EventArgs e)
+    {
+        vm.collections.Clear();
+        vm.GetAllLibrary();
+        //OnAppearing();
     }
 }

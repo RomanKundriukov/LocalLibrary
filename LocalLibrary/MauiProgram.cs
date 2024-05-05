@@ -22,6 +22,7 @@ namespace LocalLibrary
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("rus.ttf", "rus");
                     fonts.AddFont("de.ttf", "de");
+                    fonts.AddFont("davyrib.ttf", "davy");
                 });
             //bekommen alle Disk im Pc
             LocalDiskPC.diskBuchstabe();
@@ -42,6 +43,9 @@ namespace LocalLibrary
 
             builder.Services.AddSingleton<StartPage>();
             builder.Services.AddTransient<StartContentViewModel>();
+
+            builder.Services.AddTransient<LibraryContent>();
+            builder.Services.AddTransient<LibraryContentViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

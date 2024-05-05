@@ -2,8 +2,11 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using LocalLibrary.Data;
+using LocalLibrary.Models;
 using LocalLibrary.Services;
+using LocalLibrary.Views.ContentView;
 using System.Collections.ObjectModel;
+using System.Data;
 
 namespace LocalLibrary.ViewModels.ContentViewModel
 {
@@ -48,6 +51,29 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         public void GetAllLibrary()
         {
             string pathDb = PathDb.GetPath("LocalLibrary.db");
+            string sqlCommand = "SELECT * FROM [LibraryDBs]";
+
+            var allLibrary = SqliteCommand.GetAlllibrary(pathDb, sqlCommand);
+
+            foreach (DataRow row in allLibrary.Rows)
+            {
+                //LocalLibraryCollection localLibraryCollection = new()
+                //{
+                //    LibraryName = row["libraryName"].ToString(),
+                //    LibraryIcon = row["libraryIconPath"].ToString()
+                //};
+
+                collections.Add(new LocalLibraryCollection
+                {
+                    LibraryIcon = row["libraryIconPath"].ToString(),
+                    LibraryName = row["libraryName"].ToString()
+                });
+                //allLibraryCollections.Add(row["libraryName"].ToString());
+
+                //allLibraryImagePathCollections.Add(row["libraryIconPath"].ToString());
+
+            }
+            OnPropertyChanged(nameof(collections));
         }
         #endregion
 
@@ -70,15 +96,40 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [ObservableProperty]
         public bool fotoIsUpload = false;
 
+        [ObservableProperty]
+        public string imageSource = "";
+
+        [ObservableProperty]
+        LocalLibraryCollection localLibraryCollection = new();
 
         //Aufmachen und Delete Library
 
         [ObservableProperty]
-        public ObservableCollection<string> allLibraryCollections = new();
-
+        public ObservableCollection<LocalLibraryCollection> collections = new();
         #endregion
 
         #region Commands
+
+        [RelayCommand]
+        public void selectDrive(LocalLibraryCollection lib)
+        {
+
+            OnPropertyChanged(nameof(auswehlteElement));
+        }
+
+        [RelayCommand]
+        public async Task aufmachenDirectory()
+        {
+            if (auswehlteElement == null)
+            {
+                toastShow("Выберите библиотеку");
+                return;
+            }
+            else
+            {
+                await Shell.Current.GoToAsync(nameof(LibraryContent));
+            }
+        }
 
         [RelayCommand]
         public async Task erstellungDirectory()
@@ -163,12 +214,16 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                             await stream.CopyToAsync(fileStream);
                         }
                         fotoIsUpload = true;
+                        OnPropertyChanged(nameof(FotoIsUpload));
+                        imageSource = fileName;
+                        OnPropertyChanged(nameof(ImageSource));
                         toastShow("Фото успешно загружено");
                     }
                 }
                 catch (Exception)
                 {
                     fotoIsUpload = false;
+                    OnPropertyChanged(nameof(FotoIsUpload));
                     toastShow("Фото не было загружено");
                 }
             }
