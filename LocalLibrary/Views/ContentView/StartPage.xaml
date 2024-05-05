@@ -140,6 +140,12 @@
                         Opacity="1"
                         Text="Удалить"
                         TextColor="Black" />
+
+                    <ImageButton
+                        Clicked="Refresh"
+                        HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Source="reload.png" />
                 </VerticalStackLayout>
             </Border>
         </HorizontalStackLayout>

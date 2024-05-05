@@ -30,4 +30,10 @@ public partial class StartPage : ContentPage
         PopupMeldung pop = new PopupMeldung();
         this.ShowPopup(pop);
     }
+
+    public void Refresh(object sender, EventArgs e)
+    {
+        vm.GetAllLibrary();
+        //OnAppearing();
+    }
 }
