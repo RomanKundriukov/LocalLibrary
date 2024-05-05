@@ -113,7 +113,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [RelayCommand]
         public void selectDrive(LocalLibraryCollection lib)
         {
-
+            auswehlteElement = lib.LibraryName;
             OnPropertyChanged(nameof(auswehlteElement));
         }
 
