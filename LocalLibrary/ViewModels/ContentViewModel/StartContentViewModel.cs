@@ -80,6 +80,37 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         {
             localLibraryCollections = lib;
         }
+
+        public void deleteLibraryOrdner(string libraryName)
+        {
+            string pathDb = PathDb.GetPath("LocalLibrary.db");
+            string sqlCommand = $"SELECT * FROM [LibraryDBs] WHERE libraryName LIKE '{libraryName}'";
+
+            var dataTable = SqliteCommand.GetLibraryByName(pathDb, sqlCommand);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                string libraryPath = row["libraryPath"].ToString();
+
+                Directory.Delete(libraryPath, true);
+            }
+
+        }
+
+        public void deleteFotoLibrary(string libraryName)
+        {
+            string pathDb = PathDb.GetPath("LocalLibrary.db");
+            string sqlCommand = $"SELECT * FROM [LibraryDBs] WHERE libraryName LIKE '{libraryName}'";
+
+            var dataTable = SqliteCommand.GetLibraryByName(pathDb, sqlCommand);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                string fotoPath = row["libraryIconPath"].ToString();
+
+                File.Delete(fotoPath);
+            }
+        }
         #endregion
 
         #region ObservableProperties
@@ -118,8 +149,20 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         #endregion
 
         #region Commands
+        [RelayCommand]
+        public void deleteLibrary()
+        {
+            foreach (var item in localLibraryCollections)
+            {
+                string pathDb = PathDb.GetPath("LocalLibrary.db");
+                string sqlCommand = $"DELETE FROM [LibraryDBs] WHERE libraryName = '{item.LibraryName}'";
 
+                deleteLibraryOrdner(item.LibraryName);
+                deleteFotoLibrary(item.LibraryName);
+                SqliteCommand.DeleteLibrary(pathDb, sqlCommand);
+            }
 
+        }
 
 
         [RelayCommand]

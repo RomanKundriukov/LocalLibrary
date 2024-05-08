@@ -139,6 +139,7 @@
 
                     <Button
                         BackgroundColor="#6948bc"
+                        Command="{Binding deleteLibraryCommand}"
                         Opacity="1"
                         Text="Удалить"
                         TextColor="Black" />
