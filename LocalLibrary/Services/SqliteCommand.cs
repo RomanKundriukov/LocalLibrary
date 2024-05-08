@@ -156,6 +156,85 @@ namespace LocalLibrary.Services
                 conn.Close();
             }
         }
+
+        public static void SetBuchById(string path, string command)
+        {
+            using var conn = new SqliteConnection("Data Source=" + path);
+            conn.Open();
+            try
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = command;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static int GetIdLibrary(string parh, string command)
+        {
+            int libraryid;
+
+            using var conn = new SqliteConnection("Data Source=" + parh);
+            conn.Open();
+            try
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = command;
+
+                libraryid = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return libraryid;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static DataTable GetLibraryPathByLibraryId(string path, string command)
+        {
+            using var conn = new SqliteConnection("Data Source=" + path);
+            conn.Open();
+            try
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = command;
+
+                var data = new DataTable();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    data.Load(reader);
+                }
+                cmd.Connection.CloseAsync();
+
+                return data;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
 

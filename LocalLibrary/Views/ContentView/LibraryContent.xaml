@@ -39,24 +39,19 @@
                     BackgroundColor="Transparent"
                     Opacity="1"
                     Spacing="10"
-                    ZIndex="1" />
-            </Border>
+                    ZIndex="1">
 
-            <Border
-                BackgroundColor="#d2cfec"
-                HeightRequest="450"
-                Opacity="0.6"
-                WidthRequest="350"
-                ZIndex="0">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10" />
-                </Border.StrokeShape>
-                <VerticalStackLayout
-                    Padding="10"
-                    BackgroundColor="Transparent"
-                    Opacity="1"
-                    Spacing="10"
-                    ZIndex="1" />
+                    <Button
+                        BackgroundColor="#6948bc"
+                        Command="{Binding buchUploadCommand}"
+                        Text="Добавить книгу"
+                        TextColor="Black" />
+                    <Button
+                        BackgroundColor="#6948bc"
+                        Text="Удалить книгу"
+                        TextColor="Black" />
+
+                </VerticalStackLayout>
             </Border>
         </HorizontalStackLayout>
     </VerticalStackLayout>

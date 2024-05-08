@@ -38,7 +38,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
 
             await toast.Show(cancellationTokenSource.Token);
 
-            datenUpdate(allgemeinName);
+            //datenUpdate(allgemeinName);
         }
 
         public void datenUpdate(string libraryName)
@@ -243,7 +243,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                     toastShow("Директория библиотеки не была создана");
                 }
             }
-
+            datenUpdate(allgemeinName);
         }
 
         [RelayCommand]
