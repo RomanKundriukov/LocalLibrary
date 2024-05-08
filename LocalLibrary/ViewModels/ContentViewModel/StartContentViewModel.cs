@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using LocalLibrary.Data;
+using LocalLibrary.Model;
 using LocalLibrary.Models;
 using LocalLibrary.Services;
 using LocalLibrary.Views.ContentView;
@@ -168,14 +169,21 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [RelayCommand]
         public async Task aufmachenDirectory()
         {
-            if (auswehlteElement == null)
+            if (localLibraryCollections == null)
             {
                 toastShow("Выберите библиотеку");
                 return;
             }
             else
             {
-                await Shell.Current.GoToAsync(nameof(LibraryContent));
+                LibraryDB library = new();
+                library.libraryName = localLibraryCollections[0].LibraryName;
+
+                var navigationsParameter = new ShellNavigationQueryParameters
+                {
+                    { "Daten", library }
+                };
+                await Shell.Current.GoToAsync(nameof(LibraryContent), navigationsParameter);
             }
         }
 
@@ -261,6 +269,9 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                         {
                             await stream.CopyToAsync(fileStream);
                         }
+
+
+
                         fotoIsUpload = true;
                         OnPropertyChanged(nameof(FotoIsUpload));
                         imageSource = fileName;

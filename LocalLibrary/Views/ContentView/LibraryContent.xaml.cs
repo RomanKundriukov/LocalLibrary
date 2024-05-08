@@ -10,4 +10,16 @@ public partial class LibraryContent : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
+
+    protected override void OnAppearing()
+    {
+        vm.DatenInitialisierung();
+        base.OnAppearing();
+
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+    }
 }

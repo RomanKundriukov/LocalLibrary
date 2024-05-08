@@ -4,11 +4,60 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:LocalLibrary.ViewModels.ContentViewModel"
-    Title="LibraryContent">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+    BackgroundImageSource="background_ocean.png"
+    NavigationPage.HasNavigationBar="True">
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <HorizontalStackLayout
+            HorizontalOptions="FillAndExpand"
+            Spacing="10"
+            VerticalOptions="StartAndExpand">
+
+            <FlexLayout Margin="10" Padding="10">
+                <Image
+                    HeightRequest="90"
+                    Source="logo.png"
+                    WidthRequest="90" />
+                <Label
+                    FontFamily="davy"
+                    FontSize="36"
+                    Text="{Binding LibraryName}"
+                    VerticalTextAlignment="Center" />
+            </FlexLayout>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Border
+                BackgroundColor="#d2cfec"
+                HeightRequest="450"
+                Opacity="0.6"
+                WidthRequest="350"
+                ZIndex="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    Opacity="1"
+                    Spacing="10"
+                    ZIndex="1" />
+            </Border>
+
+            <Border
+                BackgroundColor="#d2cfec"
+                HeightRequest="450"
+                Opacity="0.6"
+                WidthRequest="350"
+                ZIndex="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    Opacity="1"
+                    Spacing="10"
+                    ZIndex="1" />
+            </Border>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
