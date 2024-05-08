@@ -38,4 +38,11 @@ public partial class StartPage : ContentPage
         vm.GetAllLibrary();
         //OnAppearing();
     }
+
+    public void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var previous = e.PreviousSelection;
+        var current = e.CurrentSelection;
+
+    }
 }

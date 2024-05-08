@@ -102,11 +102,11 @@
                             BackgroundColor="Wheat"
                             HeightRequest="250"
                             ItemsSource="{Binding Collections}"
-                            SelectedItem="{Binding LocalLibraryCollection}"
-                            SelectionMode="Single">
-                            <CollectionView.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding selectDriveCommand}" CommandParameter="{Binding LocalLibraryCollection}" />
-                            </CollectionView.GestureRecognizers>
+                            SelectionChanged="OnCollectionViewSelectionChanged"
+                            SelectionMode="Multiple">
+                            <!--<CollectionView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding selectDriveCommand}" />
+                            </CollectionView.GestureRecognizers>-->
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Padding="10">

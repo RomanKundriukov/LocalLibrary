@@ -110,6 +110,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
 
         #region Commands
 
+
         [RelayCommand]
         public void selectDrive(LocalLibraryCollection lib)
         {
