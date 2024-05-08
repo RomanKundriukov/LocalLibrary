@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using LocalLibrary.Models;
 using LocalLibrary.ViewModels.ContentViewModel;
 using LocalLibrary.ViewModels.PopupViewModel;
 using LocalLibrary.Views.PopupPages;
@@ -41,8 +42,12 @@ public partial class StartPage : ContentPage
 
     public void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+
+
         var previous = e.PreviousSelection;
         var current = e.CurrentSelection;
 
+        List<LocalLibraryCollection> collections = e.CurrentSelection.Cast<LocalLibraryCollection>().ToList();
+        vm.selectDrive(collections);
     }
 }

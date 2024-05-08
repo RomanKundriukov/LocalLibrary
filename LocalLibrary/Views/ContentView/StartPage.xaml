@@ -104,9 +104,6 @@
                             ItemsSource="{Binding Collections}"
                             SelectionChanged="OnCollectionViewSelectionChanged"
                             SelectionMode="Multiple">
-                            <!--<CollectionView.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding selectDriveCommand}" />
-                            </CollectionView.GestureRecognizers>-->
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Padding="10">

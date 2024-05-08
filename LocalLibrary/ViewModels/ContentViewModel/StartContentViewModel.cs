@@ -75,9 +75,16 @@ namespace LocalLibrary.ViewModels.ContentViewModel
             }
             OnPropertyChanged(nameof(collections));
         }
+
+        public void selectDrive(List<LocalLibraryCollection> lib)
+        {
+            localLibraryCollections = lib;
+        }
         #endregion
 
         #region ObservableProperties
+
+        List<LocalLibraryCollection> localLibraryCollections = new();
 
         //Create Library
 
@@ -106,17 +113,14 @@ namespace LocalLibrary.ViewModels.ContentViewModel
 
         [ObservableProperty]
         public ObservableCollection<LocalLibraryCollection> collections = new();
+
+
         #endregion
 
         #region Commands
 
 
-        [RelayCommand]
-        public void selectDrive(LocalLibraryCollection lib)
-        {
-            auswehlteElement = lib.LibraryName;
-            OnPropertyChanged(nameof(auswehlteElement));
-        }
+
 
         [RelayCommand]
         public async Task aufmachenDirectory()
