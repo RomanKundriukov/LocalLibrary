@@ -178,6 +178,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
             {
                 LibraryDB library = new();
                 library.libraryName = localLibraryCollections[0].LibraryName;
+                library.libraryIconPath = localLibraryCollections[0].LibraryIcon;
 
                 var navigationsParameter = new ShellNavigationQueryParameters
                 {

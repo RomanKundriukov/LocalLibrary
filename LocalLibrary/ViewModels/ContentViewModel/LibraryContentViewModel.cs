@@ -20,6 +20,8 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         #region ObservableProperty
         [ObservableProperty]
         public string libraryName = "";
+        [ObservableProperty]
+        public string libraryIcon = "logo.png";
         #endregion
 
         #region Command
@@ -29,7 +31,16 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         public void DatenInitialisierung()
         {
             libraryName = Daten.libraryName;
+            if (Daten.libraryIconPath != null)
+            {
+                libraryIcon = Daten.libraryIconPath;
+            }
+            else
+            {
+                libraryIcon = "logo.png";
+            }
             OnPropertyChanged(nameof(LibraryName));
+            OnPropertyChanged(nameof(LibraryIcon));
         }
         #endregion
     }

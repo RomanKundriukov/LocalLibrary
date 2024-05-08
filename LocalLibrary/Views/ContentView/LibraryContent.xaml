@@ -15,7 +15,7 @@
             <FlexLayout Margin="10" Padding="10">
                 <Image
                     HeightRequest="90"
-                    Source="logo.png"
+                    Source="{Binding LibraryIcon}"
                     WidthRequest="90" />
                 <Label
                     FontFamily="davy"
