@@ -17,6 +17,9 @@ namespace LocalLibrary.Model
         [Column("buchAutor")]
         public string? buchAutor { get; set; }
 
+        [Column("filePath")]
+        public string? filePath { get; set; }
+
         public int libraryID { get; set; }
 
         [ForeignKey("libraryID")]

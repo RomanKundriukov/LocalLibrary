@@ -7,5 +7,6 @@
         public string BuchAutor { get; set; }
         public string BuchIcon { get; set; }
         public string BuchType { get; set; }
+        public string FilePath { get; set; }
     }
 }

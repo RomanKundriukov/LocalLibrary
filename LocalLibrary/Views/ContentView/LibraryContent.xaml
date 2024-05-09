@@ -65,9 +65,24 @@
                         TextColor="Black" />
                     <Button
                         BackgroundColor="#6948bc"
+                        Command="{Binding deleteBuchCommand}"
                         Text="Удалить книгу"
                         TextColor="Black" />
+                    <Button
+                        BackgroundColor="#6948bc"
+                        Command="{Binding buchAufmachenCommand}"
+                        Text="открыть"
+                        ZIndex="1" />
+                    <Button
+                        BackgroundColor="#6948bc"
+                        Text="Инфо"
+                        ZIndex="1" />
 
+                    <ImageButton
+                        Clicked="Refresh"
+                        HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Source="reload.png" />
                 </VerticalStackLayout>
             </Border>
         </HorizontalStackLayout>
@@ -92,22 +107,46 @@
 
                 <Grid>
                     <CollectionView
-                        BackgroundColor="Wheat"
+                        BackgroundColor="Transparent"
                         ItemsSource="{Binding Collections}"
                         SelectionChanged="OnCollectionViewSelectionChanged"
                         SelectionMode="Multiple">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label
-                                        FontSize="24"
-                                        Text="{Binding BuchName}"
-                                        TextColor="Black"
-                                        VerticalOptions="Center" />
-                                </Grid>
+                                <FlexLayout
+                                    Margin="10"
+                                    Padding="10"
+                                    Direction="Column">
+                                    <Border
+                                        Margin="10"
+                                        BackgroundColor="Azure"
+                                        HeightRequest="150">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="10" />
+                                        </Border.StrokeShape>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="10"
+                                                FontSize="15"
+                                                Text="{Binding BuchName}"
+                                                TextColor="Black"
+                                                VerticalOptions="FillAndExpand" />
+                                        </Grid>
+
+                                    </Border>
+
+
+                                </FlexLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
@@ -117,98 +156,5 @@
         </HorizontalStackLayout>
     </Grid>
 
-    <!--<VerticalStackLayout Padding="10" Spacing="10">
-        <HorizontalStackLayout
-            HorizontalOptions="FillAndExpand"
-            Spacing="10"
-            VerticalOptions="StartAndExpand">
 
-            <FlexLayout Margin="10" Padding="10">
-                <Image
-                    HeightRequest="90"
-                    Source="{Binding LibraryIcon}"
-                    WidthRequest="90" />
-                <Label
-                    FontFamily="davy"
-                    FontSize="36"
-                    Text="{Binding LibraryName}"
-                    VerticalTextAlignment="Center" />
-            </FlexLayout>
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout Spacing="10">
-            <Border
-                BackgroundColor="#d2cfec"
-                HeightRequest="450"
-                Opacity="0.6"
-                WidthRequest="350"
-                ZIndex="0">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10" />
-                </Border.StrokeShape>
-                <VerticalStackLayout
-                    Padding="10"
-                    BackgroundColor="Transparent"
-                    Opacity="1"
-                    Spacing="10"
-                    ZIndex="1">
-
-                    <Button
-                        BackgroundColor="#6948bc"
-                        Command="{Binding buchUploadCommand}"
-                        Text="Добавить книгу"
-                        TextColor="Black" />
-                    <Button
-                        BackgroundColor="#6948bc"
-                        Text="Удалить книгу"
-                        TextColor="Black" />
-
-                </VerticalStackLayout>
-            </Border>
-        </HorizontalStackLayout>
-
-        <VerticalStackLayout
-            Padding="10"
-            BackgroundColor="Transparent"
-            HorizontalOptions="EndAndExpand"
-            Opacity="1"
-            Spacing="10"
-            VerticalOptions="EndAndExpand"
-            ZIndex="1">
-
-            <Grid>
-                <CollectionView
-                    BackgroundColor="Wheat"
-                    HeightRequest="250"
-                    ItemsSource="{Binding Collections}"
-                    SelectionChanged="OnCollectionViewSelectionChanged"
-                    SelectionMode="Multiple">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-    -->
-    <!--<Image
-                                        Grid.Column="0"
-                                        Margin="0,0,10,0"
-                                        HeightRequest="90"
-                                        Source="dotnet_bot.png"
-                                        WidthRequest="90" />-->
-    <!--
-                                <Label
-                                    Grid.Column="1"
-                                    FontSize="24"
-                                    Text="{Binding BuchName}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </Grid>
-        </VerticalStackLayout>
-    </VerticalStackLayout>-->
 </ContentPage>

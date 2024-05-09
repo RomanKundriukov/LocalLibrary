@@ -25,6 +25,13 @@ public partial class LibraryContent : ContentPage
         base.OnDisappearing();
     }
 
+    public void Refresh(object sender, EventArgs e)
+    {
+        vm.Collections.Clear();
+        vm.GetAllBuch();
+        //OnAppearing();
+    }
+
     public void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 

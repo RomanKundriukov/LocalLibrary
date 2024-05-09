@@ -284,6 +284,30 @@ namespace LocalLibrary.Services
                 throw;
             }
         }
+
+        public static void DeleteBuch(string path, string command)
+        {
+            using var conn = new SqliteConnection("Data Source=" + path);
+            conn.Open();
+
+            try
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = command;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
 

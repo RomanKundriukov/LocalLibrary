@@ -5,6 +5,7 @@ using LocalLibrary.Model;
 using LocalLibrary.Models;
 using LocalLibrary.Services;
 using System.Data;
+using System.Diagnostics;
 
 namespace LocalLibrary.ViewModels.ContentViewModel
 {
@@ -31,6 +32,8 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         [ObservableProperty]
         List<LocalBuchCollection> collections = new();
 
+        public string ausgeWahlteBuch { get; set; }
+        public string filePath { get; set; }
         #endregion
 
 
@@ -39,6 +42,8 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         public void selectDrive(List<LocalBuchCollection> lib)
         {
             collections = lib;
+            ausgeWahlteBuch = collections[0].BuchName;
+            filePath = collections[0].FilePath;
         }
 
 
@@ -61,14 +66,15 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                 {
                     BuchAutor = row["buchAutor"].ToString(),
                     BuchType = row["buchType"].ToString(),
-                    BuchName = row["buchName"].ToString()
+                    BuchName = row["buchName"].ToString(),
+                    FilePath = row["filePath"].ToString()
                 });
                 //allLibraryCollections.Add(row["libraryName"].ToString());
 
                 //allLibraryImagePathCollections.Add(row["libraryIconPath"].ToString());
 
             }
-            OnPropertyChanged(nameof(collections));
+            OnPropertyChanged(nameof(Collections));
         }
 
         public void DatenInitialisierung()
@@ -102,8 +108,34 @@ namespace LocalLibrary.ViewModels.ContentViewModel
 
         #region Command
 
+
         [RelayCommand]
-        public async void buchUpload()
+        public void buchAufmachen()
+        {
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    // Öffnen Sie die Datei mit der Standardanwendung
+                    Process.Start(new ProcessStartInfo(filePath)
+                    {
+                        UseShellExecute = true
+                    });
+
+
+                    //byte[] pdfBytes = File.ReadAllBytes(filePath);
+                    //var fileContent = File.ReadAllTextAsync(filePath);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+        }
+
+        [RelayCommand]
+        public void deleteBuch()
         {
             string pathDb = PathDb.GetPath("LocalLibrary.db");
             //bekommen id von Library
@@ -115,6 +147,40 @@ namespace LocalLibrary.ViewModels.ContentViewModel
             string sqlCommandPath = $"SELECT libraryPath FROM [LibraryDBs] WHERE [libraryID] = '{libraryId}'";
             var dataTable = SqliteCommand.GetLibraryPathByLibraryId(pathDb, sqlCommandPath);
 
+            foreach (DataRow row in dataTable.Rows)
+            {
+                libraryPath = row["libraryPath"].ToString();
+            }
+
+            try
+            {
+                File.Delete(filePath);
+                string sqlCommandDelete = $"DELETE FROM [BuchDBs] WHERE filePath='{filePath}'";
+                SqliteCommand.DeleteBuch(pathDb, sqlCommandDelete);
+
+                toastShow("Книга была удалена");
+                OnPropertyChanged(nameof(Collections));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [RelayCommand]
+        public async void buchUpload()
+        {
+            string pathDb = PathDb.GetPath("LocalLibrary.db");
+
+            //bekommen id von Library
+            string sqlCommand = $"SELECT libraryID FROM [LibraryDBs] WHERE [libraryName] = '{libraryName}'";
+            int libraryId = SqliteCommand.GetIdLibrary(pathDb, sqlCommand);
+
+            //bekommen LibraryPath
+            string libraryPath = "";
+            string sqlCommandPath = $"SELECT libraryPath FROM [LibraryDBs] WHERE [libraryID] = '{libraryId}'";
+            var dataTable = SqliteCommand.GetLibraryPathByLibraryId(pathDb, sqlCommandPath);
 
 
             foreach (DataRow row in dataTable.Rows)
@@ -124,25 +190,34 @@ namespace LocalLibrary.ViewModels.ContentViewModel
             try
             {
                 var buch = await FilePicker.PickMultipleAsync();
+
                 if (buch != null)
                 {
-                    string ordnerPath = libraryPath;
-                    string buchName = buch.Select(x => x.FileName).FirstOrDefault();
-                    string fileName = Path.Combine(ordnerPath, $"{buchName}");
-
-                    foreach (var file in buch)
+                    if (File.Exists(buch.ToString()))
                     {
-                        using (var stream = await file.OpenReadAsync())
-                        using (var fileStream = File.OpenWrite(fileName))
-                        {
-                            await stream.CopyToAsync(fileStream);
-                        }
+                        toastShow("Книга уже существует");
                     }
-                    //set Buch in DB
-                    string sqlCommandBuch = $"INSERT INTO [BuchDBs] (buchName, libraryID) VALUES ('{buchName}',{libraryId})";
-                    SqliteCommand.SetBuchInDb(pathDb, sqlCommandBuch);
+                    else
+                    {
+                        string ordnerPath = libraryPath;
+                        string buchName = buch.Select(x => x.FileName).FirstOrDefault();
+                        string fileName = Path.Combine(ordnerPath, $"{buchName}");
 
-                    toastShow("Книга была сохранена");
+                        foreach (var file in buch)
+                        {
+                            using (var stream = await file.OpenReadAsync())
+                            using (var fileStream = File.OpenWrite(fileName))
+                            {
+                                await stream.CopyToAsync(fileStream);
+                            }
+                        }
+                        //set Buch in DB
+                        string sqlCommandBuch = $"INSERT INTO [BuchDBs] (buchName, libraryID, filePath) VALUES ('{buchName}',{libraryId}, '{fileName}')";
+                        SqliteCommand.SetBuchInDb(pathDb, sqlCommandBuch);
+
+                        toastShow("Книга была сохранена");
+                    }
+
                 }
                 else
                 {
