@@ -74,7 +74,7 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                 //allLibraryImagePathCollections.Add(row["libraryIconPath"].ToString());
 
             }
-            OnPropertyChanged(nameof(collections));
+            OnPropertyChanged(nameof(Collections));
         }
 
         public void selectDrive(List<LocalLibraryCollection> lib)

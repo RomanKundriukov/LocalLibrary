@@ -9,13 +9,13 @@ namespace LocalLibrary.Model
         public int buchID { get; set; }
 
         [Column("buchName")]
-        public string buchName { get; set; }
+        public string? buchName { get; set; }
 
         [Column("buchType")]
-        public string buchType { get; set; }
+        public string? buchType { get; set; }
 
         [Column("buchAutor")]
-        public string buchAutor { get; set; }
+        public string? buchAutor { get; set; }
 
         public int libraryID { get; set; }
 

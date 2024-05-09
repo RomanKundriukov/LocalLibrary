@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using LocalLibrary.Model;
+using LocalLibrary.Models;
 using LocalLibrary.Services;
 using System.Data;
 
@@ -27,10 +28,49 @@ namespace LocalLibrary.ViewModels.ContentViewModel
         public string libraryName = "";
         [ObservableProperty]
         public string libraryIcon = "logo.png";
+        [ObservableProperty]
+        List<LocalBuchCollection> collections = new();
+
         #endregion
 
 
         #region Logik
+
+        public void selectDrive(List<LocalBuchCollection> lib)
+        {
+            collections = lib;
+        }
+
+
+        public void GetAllBuch()
+        {
+            string pathDb = PathDb.GetPath("LocalLibrary.db");
+            string sqlCommand = "SELECT * FROM [BuchDBs]";
+
+            var allBuch = SqliteCommand.GetAllBuch(pathDb, sqlCommand);
+
+            foreach (DataRow row in allBuch.Rows)
+            {
+                //LocalLibraryCollection localLibraryCollection = new()
+                //{
+                //    LibraryName = row["libraryName"].ToString(),
+                //    LibraryIcon = row["libraryIconPath"].ToString()
+                //};
+
+                collections.Add(new LocalBuchCollection
+                {
+                    BuchAutor = row["buchAutor"].ToString(),
+                    BuchType = row["buchType"].ToString(),
+                    BuchName = row["buchName"].ToString()
+                });
+                //allLibraryCollections.Add(row["libraryName"].ToString());
+
+                //allLibraryImagePathCollections.Add(row["libraryIconPath"].ToString());
+
+            }
+            OnPropertyChanged(nameof(collections));
+        }
+
         public void DatenInitialisierung()
         {
             libraryName = Daten.libraryName;
@@ -75,6 +115,8 @@ namespace LocalLibrary.ViewModels.ContentViewModel
             string sqlCommandPath = $"SELECT libraryPath FROM [LibraryDBs] WHERE [libraryID] = '{libraryId}'";
             var dataTable = SqliteCommand.GetLibraryPathByLibraryId(pathDb, sqlCommandPath);
 
+
+
             foreach (DataRow row in dataTable.Rows)
             {
                 libraryPath = row["libraryPath"].ToString();
@@ -85,7 +127,8 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                 if (buch != null)
                 {
                     string ordnerPath = libraryPath;
-                    string fileName = Path.Combine(ordnerPath, $"{libraryName}.pdf");
+                    string buchName = buch.Select(x => x.FileName).FirstOrDefault();
+                    string fileName = Path.Combine(ordnerPath, $"{buchName}");
 
                     foreach (var file in buch)
                     {
@@ -95,6 +138,11 @@ namespace LocalLibrary.ViewModels.ContentViewModel
                             await stream.CopyToAsync(fileStream);
                         }
                     }
+                    //set Buch in DB
+                    string sqlCommandBuch = $"INSERT INTO [BuchDBs] (buchName, libraryID) VALUES ('{buchName}',{libraryId})";
+                    SqliteCommand.SetBuchInDb(pathDb, sqlCommandBuch);
+
+                    toastShow("Книга была сохранена");
                 }
                 else
                 {
@@ -106,45 +154,6 @@ namespace LocalLibrary.ViewModels.ContentViewModel
 
                 throw;
             }
-
-            //if (allgemeinName == "" || auswehlteElement == "")
-            //{
-            //    toastShow("Выберите диск и введите название библиотеки");
-            //    return;
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        var photo = await MediaPicker.PickPhotoAsync();
-
-            //        if (photo != null)
-            //        {
-            //            string ordnerPath = PathImages.GetPathImages();
-            //            string fileName = Path.Combine(ordnerPath, $"{allgemeinName}.png");
-
-            //            using (var stream = await photo.OpenReadAsync())
-            //            using (var fileStream = File.OpenWrite(fileName))
-            //            {
-            //                await stream.CopyToAsync(fileStream);
-            //            }
-
-
-
-            //            fotoIsUpload = true;
-            //            OnPropertyChanged(nameof(FotoIsUpload));
-            //            imageSource = fileName;
-            //            OnPropertyChanged(nameof(ImageSource));
-            //            toastShow("Фото успешно загружено");
-            //        }
-            //    }
-            //    catch (Exception)
-            //    {
-            //        fotoIsUpload = false;
-            //        OnPropertyChanged(nameof(FotoIsUpload));
-            //        toastShow("Фото не было загружено");
-            //    }
-            //}
 
         }
 

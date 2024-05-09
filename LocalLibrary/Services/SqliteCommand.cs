@@ -235,6 +235,55 @@ namespace LocalLibrary.Services
                 conn.Close();
             }
         }
+
+        public static void SetBuchInDb(string path, string command)
+        {
+            using var conn = new SqliteConnection("Data Source=" + path);
+            conn.Open();
+            try
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = command;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static DataTable GetAllBuch(string path, string command)
+        {
+            using var conn = new SqliteConnection("Data Source=" + path);
+            conn.Open();
+
+            try
+            {
+                using var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = command;
+
+                var data = new DataTable();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    data.Load(reader);
+                }
+                cmd.Connection.CloseAsync();
+                return data;
+            }
+            catch (Exception)
+            {
+                conn.CloseAsync();
+                throw;
+            }
+        }
     }
 }
 
